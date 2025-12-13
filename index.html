@@ -1,790 +1,228 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Bethel R. Hall</title>
-  <meta name="author" content="Jon Barron">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Bethel Hall</title>
+  <link rel="icon" type="image/x-icon" href="images/beth.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet" />
-
-  <!-- Inline Custom Styles -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-white: #ffffff;
-      --bg-light: #f5f5f5;
-      --text-color: #222222;
-      --accent-color: #d35400;
-      --border-color: #e0e0e0;
-      --muted-text: #666666;
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #555555;
+      --border: #dddddd;
+      --accent: #9b2c2c; 
     }
 
-    html {
-      font-size: 18px;
-    }
+    html { font-size: 18.5px; }
 
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Lato', Arial, sans-serif;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text-color);
-      background-color: var(--bg-white);
-      scroll-behavior: smooth;
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      letter-spacing: 0.012em;
     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
-      margin: 0;
-      line-height: 1.2;
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
+
+    a:hover { color: #000; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.015em;
+    }
+
+    h1 { font-size: 3.0rem; margin-bottom: 0.45rem; }
+    h2 { font-size: 1.8rem; margin: 4rem 0 1.3rem; }
+    h3, h4 { font-size: 1.0rem; margin: 0; }
 
     .container {
-      width: 90%;
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 32px 0;
+      padding: 3rem 1.25rem;
     }
 
-    .mb-8 {
-      margin-bottom: 8px;
+    header {
+      margin-bottom: 3.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .mb-16 {
-      margin-bottom: 16px;
+    .intro {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
     }
 
-    .mb-24 {
-      margin-bottom: 24px;
-    }
-
-    .mt-16 {
-      margin-top: 16px;
-    }
-
-    .mt-24 {
-      margin-top: 24px;
-    }
-
-    .pt-8 {
-      padding-top: 8px;
-    }
-
-    .pt-16 {
-      padding-top: 16px;
-    }
-
-    section:nth-of-type(odd) {
-      background-color: var(--bg-white);
-    }
-
-    section:nth-of-type(even) {
-      background-color: var(--bg-light);
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Sticky Navigation
-    ──────────────────────────────────────────────────────────────*/
-    nav {
-      position: sticky;
-      top: 0;
-      background: var(--bg-white);
-      z-index: 100;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    nav ul {
-      margin: 0;
-      padding: 12px 16px;
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      font-size: 1rem;
-      background-color: var(--bg-white);
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 400;
-      position: relative;
-      padding: 4px 0;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 50%;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease, left 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-      left: 0;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Dark Mode Toggle
-    ──────────────────────────────────────────────────────────────*/
-    #darkModeToggle {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      background: var(--accent-color);
-      color: #ffffff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 200;
-      font-size: 1rem;
-    }
-
-    .dark-mode {
-      --bg-white: #2b2b2b;
-      --bg-light: #1e1e1e;
-      --text-color: #dddddd;
-      --border-color: #444444;
-      --accent-color: #ffac33;
-      --muted-text: #aaaaaa;
-      background-color: var(--bg-white);
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Intro Section
-    ──────────────────────────────────────────────────────────────*/
-    .intro-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      align-items: flex-start;
-    }
-
-    .intro-left,
-    .intro-right {
-      flex: 1 1 300px;
-    }
-
-    .intro-left {
-      text-align: center;
-    }
-
-    .headshot {
-      width: 180px;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 50%;
-      display: inline-block;
-      background-color: var(--bg-light);
-      margin-bottom: 24px;
-    }
-
-    .name-heading {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-      color: var(--text-color);
-    }
-
-    .amharic-name {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      font-family: 'Playfair Display', serif;
-      color: var(--text-color);
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Contact Icon Links
-    ──────────────────────────────────────────────────────────────*/
-    .contact-icons {
-      margin-top: 32px;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    .contact-icons a {
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-color);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .contact-icons a:hover {
-      color: var(--accent-color);
-    }
-
-    .contact-icons svg {
-      width: 100%;
-      height: 100%;
-      fill: currentColor;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Links (within text)
-    ──────────────────────────────────────────────────────────────*/
-    a {
-      position: relative;
-      color: var(--accent-color);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 50%;
-      background-color: var(--accent-color);
-      transition: width 0.3s ease, left 0.3s ease;
-    }
-
-    a:hover::after {
-      width: 100%;
-      left: 0;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Section Headings
-    ──────────────────────────────────────────────────────────────*/
-    .section-title {
-      font-size: 2rem;
-      padding-bottom: 8px;
-      margin-bottom: 24px;
-      border-bottom: 4px solid var(--accent-color);
-      display: inline-block;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Publications Styling
-    ──────────────────────────────────────────────────────────────*/
-    .publications-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .publication-item {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 20px;
-      transition: border-color 0.3s ease;
-    }
-
-    .publication-item:hover {
-      border-color: var(--accent-color);
-    }
-
-    .publication-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-color);
-      margin: 0 0 8px 0;
-      line-height: 1.3;
-    }
-
-    .publication-authors {
-      font-size: 1rem;
-      color: var(--text-color);
-      margin: 0 0 6px 0;
-      font-weight: 400;
-    }
-
-    .publication-authors .author-highlight {
-      font-weight: 600;
-      color: var(--accent-color);
-    }
-
-    .publication-venue {
-      font-style: italic;
-      color: var(--muted-text);
-      font-size: 0.95rem;
-      margin: 0 0 16px 0;
-    }
-
-    .publication-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .publication-link {
-      display: inline-block;
-      padding: 6px 12px;
-      background-color: var(--bg-light);
-      color: var(--text-color);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .publication-link:hover {
-      background-color: var(--accent-color);
-      color: #ffffff;
-      border-color: var(--accent-color);
-      transform: translateY(-1px);
-    }
-
-    .publication-link::after {
-      display: none;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      News Cards
-    ──────────────────────────────────────────────────────────────*/
-    .news-card {
-      padding: 24px;
-      border-left: 4px solid var(--accent-color);
-      background-color: var(--bg-white);
-      margin-bottom: 24px;
-      transition: background-color 0.2s ease;
-    }
-
-    .news-card:hover {
-      background-color: var(--bg-light);
-    }
-
-    .news-card p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .projects-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .project-card {
-      flex: 1 1 260px;
-      border: 3px solid var(--accent-color);
-      border-radius: 12px;
-      overflow: hidden;
-      background-color: var(--bg-white);
-      text-align: center;
-      transition: border-color 0.3s ease;
-    }
-
-    .project-card:hover {
-      border-color: var(--text-color);
-    }
-
-    .project-img {
-      width: 100%;
+    .intro img {
+      width: 160px;
       height: 160px;
       object-fit: cover;
-      background-color: var(--bg-light);
-    }
-
-    .project-info {
-      padding: 16px;
-      background-color: var(--bg-white);
-    }
-
-    .project-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--accent-color);
-      margin: 12px 0;
-    }
-
-    .project-info p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text-color);
-      margin: 0 0 12px;
-    }
-
-    .project-link {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 16px;
-      background: var(--accent-color);
-      color: #ffffff;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-
-    .project-link:hover {
-      background: var(--text-color);
-    }
-
-    .tech-badge {
-      display: inline-block;
-      padding: 4px 8px;
-      margin: 0 4px 8px 0;
-      background: var(--accent-color);
-      color: #ffffff;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-
-    /*──────────────────────────────────────────────────────────────
-      Hobbies (Emoji Icons)
-    ──────────────────────────────────────────────────────────────*/
-    .hobbies-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .hobby-card {
-      flex: 1 1 180px;
-      background-color: var(--bg-white);
-      padding: 24px;
-      border-radius: 12px;
-      text-align: center;
-      transition: background-color 0.2s ease;
-    }
-
-    .hobby-card:hover {
-      background-color: var(--bg-light);
-    }
-
-    .hobby-icon {
-      width: 72px;
-      height: 72px;
-      background-color: var(--accent-color);
-      color: #ffffff;
       border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .contact {
+      margin-top: 1rem;
+      font-size: 0.9rem;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.25rem;
-      margin: 0 auto 16px;
+      gap: 0.9rem;
+      flex-wrap: wrap;
     }
 
-    .hobby-text {
-      margin: 0;
-      font-weight: 600;
-      color: var(--text-color);
-      font-size: 1.125rem;
+    section { margin-bottom: 3.5rem; }
+
+    .pub { margin-bottom: 1.5rem; }
+
+    .pub-star {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      margin-right: 0.35rem;
     }
 
-    /*──────────────────────────────────────────────────────────────
-      Footer
-    ──────────────────────────────────────────────────────────────*/
+    .pub-title {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .pub-title:hover {
+      text-decoration: underline;
+    }
+
+    .pub-authors { font-size: 0.95rem; }
+    .pub-venue { font-size: 0.9rem; color: var(--muted); }
+    .pub-links { font-size: 0.9rem; }
+
     footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
       text-align: center;
-      padding: 24px 0;
-      background: var(--bg-light);
-      color: var(--text-color);
-      font-size: 0.875rem;
-      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
-    /*──────────────────────────────────────────────────────────────
-      Responsive Adjustments
-    ──────────────────────────────────────────────────────────────*/
-    @media (max-width: 800px) {
-      html {
-        font-size: 16px;
+    @media (max-width: 640px) {
+      .intro {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
-
-      body {
-        line-height: 1.5;
-      }
-
-      .intro-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .intro-left,
-      .intro-right {
-        width: 100%;
-      }
-
-      .projects-grid,
-      .hobbies-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .project-card,
-      .hobby-card {
-        width: 100%;
-      }
-
-      .publication-links {
-        justify-content: center;
-      }
+      .intro img { margin: 0 auto; }
     }
   </style>
 </head>
 
 <body>
-  <!-- 1) Sticky Navigation -->
-  <nav>
-    <ul>
-      <li><a href="#bio">Biography</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#talks">Research & Talks</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#hobbies">Hobbies</a></li>
-      <li><a href="#contact">Contact</a></li>
+
+<div class="container">
+
+  <header id="about">
+    <div class="intro">
+      <img src="images/beth.jpg" alt="Bethel Hall" />
+      <div>
+        <h1>Bethel Hall (ቤቴል ሆል)</h1>
+        <div class="subtitle">Ph.D. Student, Computer Science</div>
+        <div class="subtitle">Stevens Institute of Technology</div>
+
+        <p style="margin-top:1rem;">
+          Hey! I am Bethel Hall, a Ph.D student at Stevens Institute of Technology. I am super grateful to be advised by
+          <a href="https://www.stevens.edu/faculty/william-eiers" style="color:var(--accent);"><strong>Prof. William Eiers</strong></a>.
+          My research focuses on improving the reliability and correctness of generative AI (GenAI) systems through
+          Neuro-symbolic methods. My work explores how formal reasoning and symbolic techniques can be integrated with large
+          language models (LLMs) to guarantee their correctness and safety.
+        </p>
+
+        <div class="contact" id="contact">
+          <a href="mailto:bethelroger33@gmail.com">Email</a>
+          <a href="data/Resume-BHall.pdf">CV</a>
+          <a href="https://github.com/bethelhall">GitHub</a>
+          <a href="https://www.linkedin.com/in/bethelhall">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="research-interests">
+    <h2>Research Interests</h2>
+    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem; max-width: 640px;">
+      <li>• Neuro-symbolic AI and formal reasoning</li>
+      <li>• Large language models for software engineering</li>
+      <li>• Formal verification, program synthesis, and correctness guarantees</li>
     </ul>
-  </nav>
-
-  <!-- 2) Dark Mode Toggle -->
-  <button id="darkModeToggle">☾</button>
-
-  <!-- 3) Intro Section -->
-  <section id="bio">
-    <div class="container">
-      <div class="intro-grid">
-        <!-- LEFT COLUMN -->
-        <div class="intro-left">
-          <img src="images/beth.jpg" alt="Photograph of Bethel R. Hall" class="headshot" />
-
-          <h1 class="name-heading">Bethel R. Hall</h1>
-          <p class="amharic-name">ቤቴል ሮጀር ሆል</p>
-
-          <p style="margin: 4px 0; font-size: 1rem; color: var(--text-color);">
-            Doctoral Researcher, Department of Computer Science
-          </p>
-
-          <!-- Contact Icon Links -->
-          <div class="contact-icons" id="contact">
-            <!-- Email -->
-            <a href="mailto:bethelroger33@gmail.com" aria-label="Email">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M0 4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm22 0H2v.511l10 6.212 10-6.212V4zM2 20V7.789l8.553 4.456c.204.124.444.124.648 0L22 7.789V20H2z" />
-              </svg>
-            </a>
-            <!-- CV (PDF) -->
-            <a href="data/Resume-BHall.pdf" target="_blank" rel="noopener noreferrer" aria-label="Curriculum Vitae">
-              <svg viewBox="0 0 24 24">
-                <path d="M6 2h9l5 5v15H6V2zm1 2v15h10V7h-4V3H7zm3 2h4v2h-4V5zm0 4h4v2h-4V9zm0 4h4v2h-4v-2z" />
-              </svg>
-            </a>
-            <!-- GitHub -->
-            <a href="https://github.com/bethelhall" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.396 7.868 10.92.576.107.786-.248.786-.552 0-.273-.01-1.003-.015-1.969-3.2.696-3.878-1.544-3.878-1.544-.523-1.333-1.277-1.688-1.277-1.688-1.044-.714.08-.7.08-.7 1.156.081 1.764 1.188 1.764 1.188 1.026 1.758 2.695 1.249 3.352.954.104-.742.401-1.249.73-1.537-2.556-.29-5.245-1.276-5.245-5.683 0-1.255.448-2.282 1.182-3.084-.119-.298-.513-1.495.113-3.114 0 0 .966-.309 3.165 1.182a11.013 11.013 0 0 1 2.876-.387c.975 0 1.957.132 2.876.387 2.197-1.491 3.161-1.182 3.161-1.182.628 1.619.232 2.816.114 3.114.737.802 1.18 1.829 1.18 3.084 0 4.418-2.692 5.392-5.258 5.681.413.355.781 1.077.781 2.172 0 1.568-.014 2.835-.014 3.222 0 .306.205.664.789.551C20.708 21.397 24 17.084 24 12c0-6.352-5.148-11.5-11.5-11.5z" />
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/bethelrogerhall" target="_blank" rel="noopener noreferrer"
-              aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M20.447 20.452H16.9v-5.569c0-1.328-.027-3.036-1.849-3.036-1.849 0-2.132 1.442-2.132 2.935v5.67h-3.548V9h3.413v1.561h.049c.476-.9 1.637-1.85 3.369-1.85 3.602 0 4.267 2.371 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.069-.926-2.069-2.069S4.193 3.295 5.337 3.295s2.069.926 2.069 2.069-.925 2.069-2.069 2.069zm1.779 13.019H3.558V9h3.558v11.452zM9.6 9.69v11.81h5.16v-6.45c0-3.43 4.4-3.71 4.4 0v6.45h5.16v-7.94c0-6.58-7.27-6.34-9.56-3.1V9.69H9.6z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN -->
-        <div class="intro-right">
-          <h2 class="section-title">About Me</h2>
-          <p style="font-size:1rem; line-height:1.6; margin-top:0;">
-            Bethel R. Hall is a doctoral researcher in the Department of Computer Science at
-            <a href="https://www.stevens.edu/" target="_blank" rel="noopener noreferrer">Stevens Institute of Technology</a>,
-            under the supervision of Prof. William J. Eiers. His research focuses on neurosymbolic methodologies, specifically
-            integrating large language models into formal verification pipelines. By bridging machine learning, program synthesis,
-            and automated reasoning, she seeks to develop systems that are both robustly intelligent and formally verifiable.
-          </p>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <!-- 4) Selected Publications -->
   <section id="publications">
-    <div class="container">
-      <h2 class="section-title">Selected Publications</h2>
-      <div>
-        <ul class="publications-list">
-          <li class="publication-item">
-            <h3 class="publication-title">Lorem ipseum</h3>
-            <p class="publication-authors">
-              <span class="author-highlight">Bethel R. Hall</span>, Lorem Ipsum, Dolor Sit Amet
-            </p>
-            <p class="publication-venue">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="publication-links">
-              <a href="#" class="publication-link">PDF</a>
-              <a href="#" class="publication-link">arXiv</a>
-              <a href="#" class="publication-link">Code</a>
-              <a href="#" class="publication-link">Slides</a>
-            </div>
-          </li>
+    <h2>Publications</h2>
 
-  
-
-      
-
-          <li class="publication-item">
-            <h3 class="publication-title">Loreum ipseum</h3>
-            <p class="publication-authors">
-              lorem ipseum, <span class="author-highlight">Bethel R. Hall</span>, 
-            </p>
-            <p class="publication-venue">
-              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <div class="publication-links">
-              <a href="#" class="publication-link">PDF</a>
-              <a href="#" class="publication-link">arXiv</a>
-              <a href="#" class="publication-link">Code</a>
-              <a href="#" class="publication-link">Video</a>
-            </div>
-          </li>
-        </ul>
+    <div class="pub">
+      <h4>
+        <!-- <span class="pub-star">*</span> -->
+        <a class="pub-title" href="https://www.arxiv.org/abs/2512.09957">
+          CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
+        </a>
+      </h4>
+      <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Unagro, William Eiers</div>
+      <div class="pub-venue">SANER 2026 (Research Track)</div>
+      <div class="pub-links">
+        <!-- <a href="https://www.arxiv.org/abs/2512.09957">arXiv</a> · -->
+        <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
       </div>
     </div>
-  </section>
 
-  <!-- 5) Research & Talks -->
-  <section id="talks">
-    <div class="container">
-      <h2 class="section-title">Research and Recorded Talks</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center;">
-        <!-- Thumbnail -->
-        <div style="flex: 1 1 220px; text-align: center;">
-          <img src="images/shinobi.jpg" alt="Compositional Benchmarking Thumbnail"
-            style="width: 100%; max-width: 220px; border-radius: 12px; background-color: var(--bg-light);" />
-        </div>
-        <!-- Details -->
-        <div style="flex: 2 1 320px; text-align: left;">
-          <h3 style="font-size: 1.5rem; margin: 0; color: var(--text-color);">lorem ipseum</h3>
-          <p style="margin: 8px 0 0; font-size: 0.9375rem; color: var(--muted-text);">
-            Bethel R. Hall
-            <br />
-            <em>Lorem ipseum</em>
-          </p>
-          <p style="margin-top: 12px;">
-            <a href="#" style="margin-right: 16px;">Project Page</a>
-            <a href="#" style="margin-right: 16px;">arXiv</a>
-            <a href="#">Slides</a>
-          </p>
-        </div>
+    <div class="pub">
+      <h4>
+        <!-- <span class="pub-star">*</span> -->
+        <a class="pub-title" href="https://arxiv.org/pdf/2510.20692">
+          Exploring Large Language Models for Access Control Policy Synthesis and Summarization
+        </a>
+      </h4>
+      <div class="pub-authors">Adarsh Vatsa, <strong>Bethel Hall</strong>, William Eiers</div>
+      <div class="pub-venue">Preprint</div>
+      <div class="pub-links">
+        <!-- <a href="https://arxiv.org/pdf/2510.20692">arXiv</a> ·  -->
+         <a href="#">Code</a>
       </div>
     </div>
+
   </section>
 
-  <!-- 6) News -->
-  <section id="news">
-    <div class="container">
-      <h2 class="section-title">News</h2>
-      <div>
-        <div class="news-card">
-          <p>Loreum Ipseum</p>
-        </div>
-        <div class="news-card">
-          <p>Lorem Ipseum </p>
-        </div>
-        <div class="news-card">
-          <p>March 2025: lorem ipseum</p>
-        </div>
-      </div>
-    </div>
+  <section id="updates">
+    <h2>Updates</h2>
+    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
+      <li>✓ <strong>[Dec 2025]</strong> — Paper accepted to <em>SANER 2026</em> (Research Track).</li>
+    </ul>
   </section>
 
-  <!-- 8) Hobbies -->
-  <section id="hobbies">
-    <div class="container">
-      <h2 class="section-title">Hobbies</h2>
-      <ul class="hobbies-grid">
-        <!-- Hobby 1 -->
-        <li class="hobby-card">
-          <div class="hobby-icon">📸</div>
-          <p class="hobby-text">Photography</p>
-        </li>
+</div>
 
-        <!-- Hobby 2 -->
-        <li class="hobby-card">
-          <div class="hobby-icon">🥾</div>
-          <p class="hobby-text">Hiking</p>
-        </li>
+<footer>
+  © <span id="year"></span> Bethel Hall
+</footer>
 
-        <!-- Hobby 3 -->
-        <li class="hobby-card">
-          <div class="hobby-icon">🍳</div>
-          <p class="hobby-text">Culinary Arts</p>
-        </li>
-      </ul>
-    </div>
-  </section>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-  <!-- 9) Footer -->
-  <footer>
-    <p>© <span id="current-year"></span> Bethel R. Hall. All rights reserved.</p>
-    <p>Last updated: <span id="last-updated"></span></p>
-  </footer>
-
-  <!-- 10) Scripts -->
-  <script>
-    // Dark Mode Toggle (static, no animations)
-    const toggleBtn = document.getElementById('darkModeToggle');
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark-mode');
-      toggleBtn.textContent = '☀︎';
-    }
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      toggleBtn.textContent = isDark ? '☀︎' : '☾';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-
-    // Auto-set current year & last updated (static text)
-    const now = new Date();
-    document.getElementById('current-year').textContent = now.getFullYear();
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    document.getElementById('last-updated').textContent =
-      `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
-  </script>
 </body>
-
 </html>
