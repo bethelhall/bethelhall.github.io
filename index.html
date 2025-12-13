@@ -17,7 +17,8 @@
       --text: #111111;
       --muted: #555555;
       --border: #dddddd;
-      --accent: #9b2c2c; 
+      --accent: #9b2c2c;
+      --accent-soft: rgba(155, 44, 44, 0.12);
     }
 
     html { font-size: 18.5px; }
@@ -44,11 +45,12 @@
       font-weight: 700;
       line-height: 1.3;
       letter-spacing: 0.015em;
+      margin: 0;
     }
 
-    h1 { font-size: 3.0rem; margin-bottom: 0.45rem; }
+    h1 { font-size: 3rem; }
     h2 { font-size: 1.8rem; margin: 4rem 0 1.3rem; }
-    h3, h4 { font-size: 1.0rem; margin: 0; }
+    h3, h4 { font-size: 1rem; }
 
     .container {
       max-width: 760px;
@@ -62,26 +64,52 @@
       border-bottom: 1px solid var(--border);
     }
 
+    /* --- Hero layout --- */
     .intro {
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2rem;
-      align-items: start;
+      grid-template-columns: 230px 1fr;
+      gap: 2.5rem;
+      align-items: start; /* important for clean alignment */
     }
 
-    .intro img {
-      width: 160px;
-      height: 160px;
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile img {
+      width: 210px;
+      height: 210px;
       object-fit: cover;
-      border-radius: 50%;
+      border-radius: 18px;
       border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
     }
 
-    .subtitle {
-      color: var(--muted);
+    .profile-name {
+      margin-top: 0.9rem;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 900;
+      font-size: 1.7rem;
+      line-height: 1.3;
+    }
+    
+
+    .profile-name span {
+      display: block;
       font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
       margin-top: 0.15rem;
-      letter-spacing: 0.02em;
+    }
+
+    .profile-affiliation {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
     }
 
     .contact {
@@ -94,26 +122,29 @@
 
     section { margin-bottom: 3.5rem; }
 
+    /* --- Publications --- */
     .pub { margin-bottom: 1.5rem; }
-
-    .pub-star {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.9rem;
-      margin-right: 0.35rem;
-    }
 
     .pub-title {
       color: var(--accent);
       text-decoration: none;
     }
 
-    .pub-title:hover {
-      text-decoration: underline;
-    }
+    .pub-title:hover { text-decoration: underline; }
 
     .pub-authors { font-size: 0.95rem; }
     .pub-venue { font-size: 0.9rem; color: var(--muted); }
     .pub-links { font-size: 0.9rem; }
+
+    /* --- Keyword highlight --- */
+    .kw {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.08rem 0.28rem;
+      border-radius: 7px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
 
     footer {
       border-top: 1px solid var(--border);
@@ -128,7 +159,14 @@
         grid-template-columns: 1fr;
         text-align: center;
       }
-      .intro img { margin: 0 auto; }
+
+      .profile img {
+        width: 190px;
+        height: 190px;
+        margin: 0 auto;
+      }
+
+      .kw { white-space: normal; }
     }
   </style>
 </head>
@@ -139,18 +177,32 @@
 
   <header id="about">
     <div class="intro">
-      <img src="images/beth.jpg" alt="Bethel Hall" />
-      <div>
-        <h1>Bethel Hall (ቤቴል ሆል)</h1>
-        <div class="subtitle" >Ph.D. Student, Computer Science</div>
-        <div class="subtitle">Stevens Institute of Technology</div>
 
-        <p style="margin-top:1rem;">
-          Hey! I am Bethel Hall, a Ph.D student at <a href="https://www.stevens.edu" style="color:var(--accent);">Stevens Institute of Technology</a>. I am super grateful to be advised by
+      <!-- LEFT: photo + name + affiliation -->
+      <div class="profile">
+        <img src="images/beth.jpg" alt="Bethel Hall" />
+
+        <div class="profile-name">
+          Bethel Hall
+          <span>(ቤቴል ሆል)</span>
+        </div>
+
+        <div class="profile-affiliation">
+          Ph.D. Student, Computer Science<br />
+          Stevens Institute of Technology
+        </div>
+      </div>
+
+      <!-- RIGHT: description -->
+      <div>
+        <p style="margin-top:0;">
+          Hey! I am Bethel Hall, a Ph.D student at
+          <a href="https://www.stevens.edu" style="color:var(--accent);">Stevens Institute of Technology</a>.
+          I am super grateful to be advised by
           <a href="https://www.stevens.edu/faculty/william-eiers" style="color:var(--accent);"><strong>Prof. William Eiers</strong></a>.
-          My research focuses on improving the reliability and correctness of generative AI (GenAI) systems through
-          Neuro-symbolic methods. My work explores how formal reasoning and symbolic techniques can be integrated with Large
-          Language Models (LLMs) to guarantee their correctness and safety.
+          My research focuses on improving the reliability and correctness of Generative AI (GenAI) systems through
+          <span class="kw">Neuro-symbolic methods</span>. My work explores how formal methods techniques can be integrated with
+          <span class="kw">Large Language Models (LLMs)</span> to guarantee their correctness and safety.
         </p>
 
         <div class="contact" id="contact">
@@ -160,12 +212,13 @@
           <a href="https://www.linkedin.com/in/bethelhall">LinkedIn</a>
         </div>
       </div>
+
     </div>
   </header>
 
   <section id="research-interests">
     <h2>Research Interests</h2>
-    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem; max-width: 640px;">
+    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
       <li>• Neuro-symbolic AI and formal reasoning</li>
       <li>• Large language models for software engineering</li>
       <li>• Formal verification, program synthesis, and correctness guarantees</li>
@@ -177,7 +230,6 @@
 
     <div class="pub">
       <h4>
-        <!-- <span class="pub-star">*</span> -->
         <a class="pub-title" href="https://www.arxiv.org/abs/2512.09957">
           CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
         </a>
@@ -185,14 +237,12 @@
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Unagro, William Eiers</div>
       <div class="pub-venue">SANER 2026 (Research Track)</div>
       <div class="pub-links">
-        <!-- <a href="https://www.arxiv.org/abs/2512.09957">arXiv</a> · -->
         <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
       </div>
     </div>
 
     <div class="pub">
       <h4>
-        <!-- <span class="pub-star">*</span> -->
         <a class="pub-title" href="https://arxiv.org/pdf/2510.20692">
           Exploring Large Language Models for Access Control Policy Synthesis and Summarization
         </a>
@@ -200,8 +250,7 @@
       <div class="pub-authors">Adarsh Vatsa, <strong>Bethel Hall</strong>, William Eiers</div>
       <div class="pub-venue">Preprint</div>
       <div class="pub-links">
-        <!-- <a href="https://arxiv.org/pdf/2510.20692">arXiv</a> ·  -->
-         <a href="#">Code</a>
+        <a href="#">Code</a>
       </div>
     </div>
 
@@ -212,7 +261,9 @@
     <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
       <li>✓ <strong>[Dec 2025]</strong> — Paper accepted to <em>SANER 2026</em> (Research Track).</li>
       <li>✓ <strong>[Sep 2022]</strong> — Started my Ph.D. at Stevens Institute of Technology!</li>
-      <li>✓ <strong>[May 2020]</strong> — Started working as a research intern at University of Michigan, <a href="https://aura.engin.umich.edu/past-cohorts/aura-2020/students-2020">AURA2020</a>.</li>
+      <li>✓ <strong>[May 2020]</strong> — Started working as a research intern at University of Michigan,
+        <a href="https://aura.engin.umich.edu/past-cohorts/aura-2020/students-2020">AURA2020</a>.
+      </li>
     </ul>
   </section>
 
