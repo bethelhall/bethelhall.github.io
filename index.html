@@ -363,9 +363,18 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       background: #ffffff;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .figure-panel:hover,
+    .figure-panel:focus-within {
+      border-color: #9fd7f1;
+      box-shadow: 0 14px 30px rgba(0, 119, 182, 0.12);
+      transform: translateY(-1px);
     }
 
     .figure-panel button {
+      position: relative;
       display: block;
       width: 100%;
       padding: 0;
@@ -388,6 +397,44 @@
       object-fit: contain;
       background: #ffffff;
       box-sizing: border-box;
+      transition: transform 160ms ease;
+    }
+
+    .figure-panel button:hover img,
+    .figure-panel button:focus-visible img {
+      transform: scale(1.015);
+    }
+
+    .zoom-indicator {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid #b8e4f6;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--accent);
+      box-shadow: 0 8px 20px rgba(10, 18, 24, 0.12);
+      pointer-events: none;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .zoom-indicator svg {
+      width: 1rem;
+      height: 1rem;
+      stroke-width: 2.2;
+    }
+
+    .figure-panel button:hover .zoom-indicator,
+    .figure-panel button:focus-visible .zoom-indicator {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      transform: scale(1.04);
     }
 
     .figure-label {
@@ -718,14 +765,30 @@
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_verimed.png" data-caption="VERIMED method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_verimed.png" data-caption="VERIMED method overview" aria-label="Open VERIMED method figure" title="Open larger view">
                 <img src="images/web_fig/method_verimed.png" alt="VERIMED method overview">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/verimed_res.png" data-caption="VERIMED experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/verimed_res.png" data-caption="VERIMED experimental results" aria-label="Open VERIMED results figure" title="Open larger view">
                 <img src="images/web_fig/verimed_res.png" alt="VERIMED experimental results">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Results</span>
             </div>
@@ -757,14 +820,30 @@
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_cloudfix.jpg" data-caption="CloudFix repair method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_cloudfix.jpg" data-caption="CloudFix repair method overview" aria-label="Open CloudFix method figure" title="Open larger view">
                 <img src="images/web_fig/method_cloudfix.jpg" alt="CloudFix repair method overview">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/cloudfix_res.png" data-caption="CloudFix experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/cloudfix_res.png" data-caption="CloudFix experimental results" aria-label="Open CloudFix results figure" title="Open larger view">
                 <img src="images/web_fig/cloudfix_res.png" alt="CloudFix experimental results">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Results</span>
             </div>
@@ -796,14 +875,30 @@
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_pol.png" data-caption="Policy summarization method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_pol.png" data-caption="Policy summarization method overview" aria-label="Open policy summarization method figure" title="Open larger view">
                 <img src="images/web_fig/method_pol.png" alt="Policy summarization method overview">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/pol_res.png" data-caption="Policy summarization experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/pol_res.png" data-caption="Policy summarization experimental results" aria-label="Open policy summarization results figure" title="Open larger view">
                 <img src="images/web_fig/pol_res.png" alt="Policy summarization experimental results">
+                <span class="zoom-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="10.5" cy="10.5" r="4.5" />
+                    <path d="m14 14 4 4" />
+                    <path d="M10.5 8v5" />
+                    <path d="M8 10.5h5" />
+                  </svg>
+                </span>
               </button>
               <span class="figure-label">Results</span>
             </div>
@@ -868,7 +963,6 @@
 </div>
 
 <footer>
-  © <span id="year"></span> Bethel Hall
   <div class="last-updated">Last updated May 14, 2026</div>
 </footer>
 
@@ -881,8 +975,6 @@
 </div>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
   const imageModal = document.getElementById('image-modal');
   const modalImage = document.getElementById('modal-image');
   const modalCaption = document.getElementById('modal-caption');
