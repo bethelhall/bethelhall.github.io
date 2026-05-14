@@ -205,38 +205,6 @@
       stroke: none;
     }
 
-    .spotlight {
-      margin-top: 1.4rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid #c8e8f8;
-      border-left: 4px solid var(--accent);
-      border-radius: 8px;
-      background: #f3fbff;
-    }
-
-    .spotlight-label {
-      display: block;
-      margin-bottom: 0.25rem;
-      color: var(--accent-dark);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .spotlight a {
-      color: var(--text);
-      font-weight: 600;
-      text-decoration-color: #9fd7f1;
-    }
-
-    .spotlight p {
-      margin: 0.35rem 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.55;
-    }
-
     section {
       padding: 3rem 0;
       border-bottom: 1px solid var(--border);
@@ -302,10 +270,10 @@
 
     .project {
       display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(460px, 1.15fr);
-      gap: 1.6rem;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
       align-items: start;
-      padding: 1.2rem 0;
+      padding: 1.7rem 0;
       border-top: 1px solid var(--border);
     }
 
@@ -378,9 +346,8 @@
     }
 
     .project-figure {
-      grid-column: 2;
-      grid-row: 1 / span 5;
-      margin: 0;
+      grid-column: 1;
+      margin: 1rem 0 0;
     }
 
     .figure-grid {
@@ -396,6 +363,20 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       background: #ffffff;
+    }
+
+    .figure-panel button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: #ffffff;
+      cursor: zoom-in;
+    }
+
+    .figure-panel button:focus-visible {
+      outline: 3px solid #9fd7f1;
+      outline-offset: -3px;
     }
 
     .figure-panel img {
@@ -426,6 +407,66 @@
       color: var(--muted);
       font-size: 0.82rem;
       line-height: 1.45;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(10, 18, 24, 0.82);
+    }
+
+    .image-modal.is-open {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(96vw, 1280px);
+      max-height: 92vh;
+    }
+
+    .modal-content img {
+      display: block;
+      width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .modal-caption {
+      margin-top: 0.65rem;
+      color: #ffffff;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: -0.6rem;
+      top: -0.6rem;
+      display: grid;
+      width: 2.1rem;
+      height: 2.1rem;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .modal-close:focus-visible {
+      outline: 3px solid #9fd7f1;
+      outline-offset: 2px;
     }
 
     .pub {
@@ -525,17 +566,7 @@
         grid-template-columns: 1fr;
       }
 
-      .project h3,
-      .project p,
-      .project-tags,
-      .project-stats,
-      .project-links,
       .project-figure {
-        grid-column: 1;
-      }
-
-      .project-figure {
-        grid-row: auto;
         margin-top: 0.8rem;
       }
 
@@ -582,16 +613,6 @@
           My research focuses on improving the reliability and correctness of large language models
           through neuro-symbolic methods, formal verification, program synthesis, and policy reasoning.
         </p>
-
-        <div class="spotlight">
-          <span class="spotlight-label">Latest work</span>
-          <a href="https://arxiv.org/abs/2605.13817">
-            Neurosymbolic Auditing of Natural-Language Software Requirements
-          </a>
-          <p>
-            We introduce a new approach that combines neurosymbolic methods with LLMs and SMT solvers for auditing ambiguous, inconsistent, and underspecified software requirements.
-          </p>
-        </div>
 
         <nav class="contact" id="contact" aria-label="Contact and profile links">
           <a href="mailto:bethelroger33@gmail.com" aria-label="Email Bethel Hall">
@@ -691,22 +712,26 @@
           <span>55.4% to 98.5% verified QA accuracy with SMT counterexamples</span>
           <span>12/64 ambiguity-sensitive requirements reduced to 0/64</span>
         </div>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2605.13817">Paper</a>
+        </div>
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <img src="images/web_fig/method_verimed.png" alt="VERIMED method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_verimed.png" data-caption="VERIMED method overview">
+                <img src="images/web_fig/method_verimed.png" alt="VERIMED method overview">
+              </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <img src="images/web_fig/verimed_res.png" alt="VERIMED experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/verimed_res.png" data-caption="VERIMED experimental results">
+                <img src="images/web_fig/verimed_res.png" alt="VERIMED experimental results">
+              </button>
               <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
         </figure>
-        <div class="project-links">
-          <a href="https://arxiv.org/abs/2605.13817">Paper</a>
-        </div>
       </article>
 
       <article class="project">
@@ -725,23 +750,27 @@
           <span>84.0% full repair rate on 10-request tasks vs. 48.2% baseline</span>
           <span>54.3% complete repairs on 30-request tasks vs. 22.3% baseline</span>
         </div>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2512.09957">Paper</a>
+          <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
+        </div>
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <img src="images/web_fig/method_cloudfix.jpg" alt="CloudFix repair method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_cloudfix.jpg" data-caption="CloudFix repair method overview">
+                <img src="images/web_fig/method_cloudfix.jpg" alt="CloudFix repair method overview">
+              </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <img src="images/web_fig/cloudfix_res.png" alt="CloudFix experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/cloudfix_res.png" data-caption="CloudFix experimental results">
+                <img src="images/web_fig/cloudfix_res.png" alt="CloudFix experimental results">
+              </button>
               <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
         </figure>
-        <div class="project-links">
-          <a href="https://arxiv.org/abs/2512.09957">Paper</a>
-          <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
-        </div>
       </article>
 
       <article class="project">
@@ -760,22 +789,26 @@
           <span>86.4% to 93.7% semantic equivalence for reasoning LLMs</span>
           <span>0.889 mean similarity for semantic request summaries</span>
         </div>
+        <div class="project-links">
+          <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
+        </div>
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <img src="images/web_fig/method_pol.png" alt="Policy summarization method overview">
+              <button type="button" class="image-open" data-full="images/web_fig/method_pol.png" data-caption="Policy summarization method overview">
+                <img src="images/web_fig/method_pol.png" alt="Policy summarization method overview">
+              </button>
               <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <img src="images/web_fig/pol_res.png" alt="Policy summarization experimental results">
+              <button type="button" class="image-open" data-full="images/web_fig/pol_res.png" data-caption="Policy summarization experimental results">
+                <img src="images/web_fig/pol_res.png" alt="Policy summarization experimental results">
+              </button>
               <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>The summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
         </figure>
-        <div class="project-links">
-          <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
-        </div>
       </article>
     </div>
   </section>
@@ -838,8 +871,57 @@
   <div class="last-updated">Last updated May 14, 2026</div>
 </footer>
 
+<div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded project figure">
+  <div class="modal-content">
+    <button class="modal-close" type="button" aria-label="Close expanded figure">×</button>
+    <img id="modal-image" src="" alt="">
+    <div class="modal-caption" id="modal-caption"></div>
+  </div>
+</div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const imageModal = document.getElementById('image-modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalCaption = document.getElementById('modal-caption');
+  const modalClose = imageModal.querySelector('.modal-close');
+
+  function closeImageModal() {
+    imageModal.classList.remove('is-open');
+    imageModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalImage.removeAttribute('src');
+    modalImage.alt = '';
+    modalCaption.textContent = '';
+  }
+
+  document.querySelectorAll('.image-open').forEach((button) => {
+    button.addEventListener('click', () => {
+      const caption = button.dataset.caption || '';
+      modalImage.src = button.dataset.full;
+      modalImage.alt = caption;
+      modalCaption.textContent = caption;
+      imageModal.classList.add('is-open');
+      imageModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modalClose.focus();
+    });
+  });
+
+  modalClose.addEventListener('click', closeImageModal);
+
+  imageModal.addEventListener('click', (event) => {
+    if (event.target === imageModal) {
+      closeImageModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && imageModal.classList.contains('is-open')) {
+      closeImageModal();
+    }
+  });
 </script>
 
 </body>
