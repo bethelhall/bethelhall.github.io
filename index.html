@@ -224,6 +224,14 @@
       font-size: 1.35rem;
     }
 
+    .section-note {
+      max-width: 720px;
+      margin: -0.45rem 0 1.3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
     .interest-list,
     .update-list {
       list-style: none;
@@ -322,13 +330,16 @@
       background: #fbfbfa;
     }
 
-    .math-label {
-      display: block;
-      margin-bottom: 0.25rem;
+    .project-math summary {
+      cursor: pointer;
       color: var(--muted);
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
+    }
+
+    .project-math[open] summary {
+      margin-bottom: 0.25rem;
     }
 
     .math-line {
@@ -530,7 +541,7 @@
           I am a Ph.D. student in Computer Science at
           <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
           advised by
-          <a href="https://www.stevens.edu/faculty/william-eiers">Prof. William Eiers</a>.
+          <a href="https://www.stevens.edu/profile/weiers">Prof. William Eiers</a>.
           My research focuses on improving the reliability and correctness of large language models
           through neuro-symbolic methods, formal verification, program synthesis, and policy reasoning.
         </p>
@@ -569,11 +580,14 @@
 
   <section id="projects">
     <h2>Projects</h2>
+    <p class="section-note">
+      Research systems that combine large language models with formal methods for software requirements, cloud security, and verifiable policy analysis.
+    </p>
     <div class="project-list">
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          A neurosymbolic auditing pipeline for medical-device software requirements. VERIMED translates natural-language requirements into a unified SMT model, checks consistency, vacuousness, violatability, redundancy, and uses repeated formalization to expose ambiguity in the original text.
+          Audits natural-language medical-device requirements by translating them into SMT and using solver feedback to catch ambiguity, inconsistency, vacuousness, and safety violations.
         </p>
         <div class="project-tags">
           <span>Natural-language requirements</span>
@@ -586,11 +600,6 @@
           <span>55.4% to 98.5% verified QA accuracy with SMT counterexamples</span>
           <span>12/64 ambiguity-sensitive requirements reduced to 0/64</span>
         </div>
-        <div class="project-math">
-          <span class="math-label">Core formalization</span>
-          <div class="math-line">&rho;<sub>i</sub>(x) &equiv; p<sub>i</sub>(x) &rArr; q<sub>i</sub>(x), &nbsp; M = C &and; &rho;<sub>1</sub> &and; ... &and; &rho;<sub>n</sub></div>
-          <div class="math-line">Ambiguity check: C &and; (&rho;<sup>a</sup> &and; &not;&rho;<sup>b</sup>) and C &and; (&rho;<sup>b</sup> &and; &not;&rho;<sup>a</sup>) must both be UNSAT.</div>
-        </div>
         <figure class="project-figure">
           <div class="flow">
             <span>Requirements</span>
@@ -600,6 +609,11 @@
           </div>
           <figcaption>Figure: VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
         </figure>
+        <details class="project-math">
+          <summary>Formal core</summary>
+          <div class="math-line">&rho;<sub>i</sub>(x) &equiv; p<sub>i</sub>(x) &rArr; q<sub>i</sub>(x), &nbsp; M = C &and; &rho;<sub>1</sub> &and; ... &and; &rho;<sub>n</sub></div>
+          <div class="math-line">Ambiguity check: C &and; (&rho;<sup>a</sup> &and; &not;&rho;<sup>b</sup>) and C &and; (&rho;<sup>b</sup> &and; &not;&rho;<sup>a</sup>) must both be UNSAT.</div>
+        </details>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2605.13817">Paper</a>
         </div>
@@ -608,7 +622,7 @@
       <article class="project">
         <h3>CloudFix</h3>
         <p>
-          An automated repair framework for AWS IAM policies that combines formal-methods fault localization with LLM-generated candidate repairs. CloudFix maps failed requests to responsible policy statements, prompts the model with those failure causes, and validates each candidate repair with SMT-based policy analysis.
+          Repairs misconfigured AWS IAM policies by pairing SMT-based fault localization with LLM-generated patches, then validating each candidate against must-allow and must-deny requests.
         </p>
         <div class="project-tags">
           <span>AWS IAM</span>
@@ -621,11 +635,6 @@
           <span>84.0% full repair rate on 10-request tasks vs. 48.2% baseline</span>
           <span>54.3% complete repairs on 30-request tasks vs. 22.3% baseline</span>
         </div>
-        <div class="project-math">
-          <span class="math-label">Repair objective</span>
-          <div class="math-line">Accuracy = R<sub>c</sub> / R<sub>total</sub> &times; 100%</div>
-          <div class="math-line">ValidateGoal(P, R): every must-allow request satisfies P and every must-deny request does not satisfy P.</div>
-        </div>
         <figure class="project-figure">
           <div class="flow">
             <span>Faulty policy + requests</span>
@@ -635,6 +644,11 @@
           </div>
           <figcaption>Figure: CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
         </figure>
+        <details class="project-math">
+          <summary>Formal core</summary>
+          <div class="math-line">Accuracy = R<sub>c</sub> / R<sub>total</sub> &times; 100%</div>
+          <div class="math-line">ValidateGoal(P, R): every must-allow request satisfies P and every must-deny request does not satisfy P.</div>
+        </details>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2512.09957">Paper</a>
           <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
@@ -644,7 +658,7 @@
       <article class="project">
         <h3>Access-Control Policy Synthesis and Summarization</h3>
         <p>
-          A study of how well LLMs synthesize, explain, and summarize cloud access-control policies. The project shows that syntactically plausible policy generation can still fail semantic equivalence, then introduces an automata-based request summarizer that turns policy behavior into interpretable regular expressions verified with model counting.
+          Studies whether LLMs truly understand cloud access-control policies and introduces an automata-based summarizer that converts policy behavior into verified, interpretable regular expressions.
         </p>
         <div class="project-tags">
           <span>Policy synthesis</span>
@@ -657,11 +671,6 @@
           <span>86.4% to 93.7% semantic equivalence for reasoning LLMs</span>
           <span>0.889 mean similarity for semantic request summaries</span>
         </div>
-        <div class="project-math">
-          <span class="math-label">Policy semantics</span>
-          <div class="math-line">Allow(P) = {(&delta;, a, r, e) : &exist;&rho;<sub>i</sub> &in; P, &rho;<sub>i</sub> = Allow &and; &not;&exist;&rho;<sub>j</sub> &in; P, &rho;<sub>j</sub> = Deny}</div>
-          <div class="math-line">J(R<sub>DFA</sub>, R<sub>LLM</sub>) = Count(A<sub>intersection</sub>) / Count(A<sub>union</sub>)</div>
-        </div>
         <figure class="project-figure">
           <div class="flow">
             <span>Policy</span>
@@ -671,6 +680,11 @@
           </div>
           <figcaption>Figure: the summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
         </figure>
+        <details class="project-math">
+          <summary>Formal core</summary>
+          <div class="math-line">Allow(P) = {(&delta;, a, r, e) : &exist;&rho;<sub>i</sub> &in; P, &rho;<sub>i</sub> = Allow &and; &not;&exist;&rho;<sub>j</sub> &in; P, &rho;<sub>j</sub> = Deny}</div>
+          <div class="math-line">J(R<sub>DFA</sub>, R<sub>LLM</sub>) = Count(A<sub>intersection</sub>) / Count(A<sub>union</sub>)</div>
+        </details>
         <div class="project-links">
           <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
         </div>
