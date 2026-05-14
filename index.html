@@ -258,6 +258,10 @@
     }
 
     .project {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+      gap: 1.35rem;
+      align-items: start;
       padding: 1.2rem 0;
       border-top: 1px solid var(--border);
     }
@@ -274,6 +278,14 @@
       line-height: 1.35;
     }
 
+    .project h3,
+    .project p,
+    .project-tags,
+    .project-stats,
+    .project-links {
+      grid-column: 1;
+    }
+
     .project p {
       max-width: 720px;
       margin: 0.35rem 0 0;
@@ -286,7 +298,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.7rem;
-      margin-top: 0.45rem;
+      margin-top: 0.7rem;
       font-size: 0.9rem;
     }
 
@@ -322,77 +334,49 @@
       font-weight: 500;
     }
 
-    .project-math {
-      margin-top: 0.85rem;
-      padding: 0.75rem 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #fbfbfa;
-    }
-
-    .project-math summary {
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .project-math[open] summary {
-      margin-bottom: 0.25rem;
-    }
-
-    .math-line {
-      overflow-x: auto;
-      color: var(--text);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.86rem;
-      line-height: 1.55;
-      white-space: nowrap;
-    }
-
     .project-figure {
-      margin: 0.85rem 0 0;
+      grid-column: 2;
+      grid-row: 1 / span 5;
+      margin: 0;
     }
 
-    .flow {
+    .figure-placeholder {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.4rem;
-      align-items: stretch;
-    }
-
-    .flow span {
-      position: relative;
-      display: flex;
-      min-height: 3.25rem;
-      align-items: center;
-      justify-content: center;
-      padding: 0.55rem 0.65rem;
-      border: 1px solid #c8e8f8;
+      min-height: 165px;
+      place-items: center;
+      padding: 1rem;
+      border: 1px dashed #9fd7f1;
       border-radius: 8px;
-      background: #f3fbff;
-      color: var(--accent-dark);
-      font-size: 0.78rem;
-      font-weight: 600;
-      line-height: 1.25;
+      background:
+        linear-gradient(135deg, rgba(0, 119, 182, 0.08), rgba(255, 255, 255, 0) 55%),
+        #f7fbfd;
       text-align: center;
     }
 
-    .flow span:not(:last-child)::after {
-      content: ">";
-      position: absolute;
-      right: -0.34rem;
-      top: 50%;
-      z-index: 1;
-      width: 0.7rem;
-      height: 0.7rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 0.55rem;
-      line-height: 0.7rem;
-      transform: translateY(-50%);
+    .placeholder-label {
+      display: block;
+      color: var(--accent-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .figure-placeholder strong {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .figure-placeholder small {
+      display: block;
+      max-width: 18rem;
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
     }
 
     figcaption {
@@ -495,16 +479,22 @@
         padding: 2.3rem 0;
       }
 
-      .flow {
+      .project {
         grid-template-columns: 1fr;
       }
 
-      .flow span:not(:last-child)::after {
-        bottom: -0.34rem;
-        left: 50%;
-        right: auto;
-        top: auto;
-        transform: translateX(-50%) rotate(90deg);
+      .project h3,
+      .project p,
+      .project-tags,
+      .project-stats,
+      .project-links,
+      .project-figure {
+        grid-column: 1;
+      }
+
+      .project-figure {
+        grid-row: auto;
+        margin-top: 0.8rem;
       }
     }
   </style>
@@ -552,7 +542,7 @@
             Neurosymbolic Auditing of Natural-Language Software Requirements
           </a>
           <p>
-            A neurosymbolic approach for auditing ambiguous, inconsistent, and underspecified software requirements with LLMs and SMT solvers.
+            We introduce a new approach that combines neurosymbolic methods with LLMs and SMT solvers for auditing ambiguous, inconsistent, and underspecified software requirements.
           </p>
         </div>
 
@@ -587,7 +577,7 @@
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          Audits natural-language medical-device requirements by translating them into SMT and using solver feedback to catch ambiguity, inconsistency, vacuousness, and safety violations.
+          We introduce a new approach that combines neurosymbolic methods with LLMs and SMT solvers for auditing ambiguous, inconsistent, and underspecified software requirements.
         </p>
         <div class="project-tags">
           <span>Natural-language requirements</span>
@@ -601,19 +591,15 @@
           <span>12/64 ambiguity-sensitive requirements reduced to 0/64</span>
         </div>
         <figure class="project-figure">
-          <div class="flow">
-            <span>Requirements</span>
-            <span>Repeated LLM formalization</span>
-            <span>Bidirectional SMT checks</span>
-            <span>Clarified specification</span>
+          <div class="figure-placeholder" role="img" aria-label="Placeholder for VERIMED method figure">
+            <div>
+              <span class="placeholder-label">Figure placeholder</span>
+              <strong>VERIMED method overview</strong>
+              <small>Replace with the ambiguity-resolution or architecture figure.</small>
+            </div>
           </div>
-          <figcaption>Figure: VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
+          <figcaption>VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
         </figure>
-        <details class="project-math">
-          <summary>Formal core</summary>
-          <div class="math-line">&rho;<sub>i</sub>(x) &equiv; p<sub>i</sub>(x) &rArr; q<sub>i</sub>(x), &nbsp; M = C &and; &rho;<sub>1</sub> &and; ... &and; &rho;<sub>n</sub></div>
-          <div class="math-line">Ambiguity check: C &and; (&rho;<sup>a</sup> &and; &not;&rho;<sup>b</sup>) and C &and; (&rho;<sup>b</sup> &and; &not;&rho;<sup>a</sup>) must both be UNSAT.</div>
-        </details>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2605.13817">Paper</a>
         </div>
@@ -636,19 +622,15 @@
           <span>54.3% complete repairs on 30-request tasks vs. 22.3% baseline</span>
         </div>
         <figure class="project-figure">
-          <div class="flow">
-            <span>Faulty policy + requests</span>
-            <span>SMT goal validation</span>
-            <span>Fault localization report</span>
-            <span>LLM repair + verification</span>
+          <div class="figure-placeholder" role="img" aria-label="Placeholder for CloudFix method figure">
+            <div>
+              <span class="placeholder-label">Figure placeholder</span>
+              <strong>CloudFix repair loop</strong>
+              <small>Replace with the fault-localization and repair architecture figure.</small>
+            </div>
           </div>
-          <figcaption>Figure: CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
+          <figcaption>CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
         </figure>
-        <details class="project-math">
-          <summary>Formal core</summary>
-          <div class="math-line">Accuracy = R<sub>c</sub> / R<sub>total</sub> &times; 100%</div>
-          <div class="math-line">ValidateGoal(P, R): every must-allow request satisfies P and every must-deny request does not satisfy P.</div>
-        </details>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2512.09957">Paper</a>
           <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
@@ -672,19 +654,15 @@
           <span>0.889 mean similarity for semantic request summaries</span>
         </div>
         <figure class="project-figure">
-          <div class="flow">
-            <span>Policy</span>
-            <span>SMT encoding</span>
-            <span>Multi-track DFA</span>
-            <span>Verified regex summary</span>
+          <div class="figure-placeholder" role="img" aria-label="Placeholder for policy summarization figure">
+            <div>
+              <span class="placeholder-label">Figure placeholder</span>
+              <strong>Policy summarization pipeline</strong>
+              <small>Replace with the automata-to-regex summarization figure.</small>
+            </div>
           </div>
-          <figcaption>Figure: the summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
+          <figcaption>The summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
         </figure>
-        <details class="project-math">
-          <summary>Formal core</summary>
-          <div class="math-line">Allow(P) = {(&delta;, a, r, e) : &exist;&rho;<sub>i</sub> &in; P, &rho;<sub>i</sub> = Allow &and; &not;&exist;&rho;<sub>j</sub> &in; P, &rho;<sub>j</sub> = Deny}</div>
-          <div class="math-line">J(R<sub>DFA</sub>, R<sub>LLM</sub>) = Count(A<sub>intersection</sub>) / Count(A<sub>union</sub>)</div>
-        </details>
         <div class="project-links">
           <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
         </div>
