@@ -205,6 +205,48 @@
       stroke: none;
     }
 
+    .research-highlights {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      overflow: hidden;
+      margin: 2.1rem 0 0;
+      padding: 0;
+      border: 1px solid #c8e8f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 12px 30px rgba(0, 119, 182, 0.08);
+      list-style: none;
+    }
+
+    .research-highlights li {
+      min-width: 0;
+      padding: 0.9rem 1rem;
+      border-left: 1px solid #dff2fb;
+    }
+
+    .research-highlights li:first-child {
+      border-left: 0;
+    }
+
+    .highlight-value {
+      display: block;
+      color: var(--accent);
+      font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .highlight-label {
+      display: block;
+      margin-top: 0.32rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
     section {
       padding: 3rem 0;
       border-bottom: 1px solid var(--border);
@@ -605,6 +647,24 @@
         height: 180px;
       }
 
+      .research-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 1.6rem;
+      }
+
+      .research-highlights li {
+        border-top: 1px solid #dff2fb;
+        border-left: 0;
+      }
+
+      .research-highlights li:nth-child(-n+2) {
+        border-top: 0;
+      }
+
+      .research-highlights li:nth-child(even) {
+        border-left: 1px solid #dff2fb;
+      }
+
       section {
         padding: 2.3rem 0;
       }
@@ -708,6 +768,25 @@
       </div>
 
     </div>
+
+    <ul class="research-highlights" aria-label="Research highlights">
+      <li>
+        <span class="highlight-value">64/64</span>
+        <span class="highlight-label">Natural-language requirements autoformalized into SMT</span>
+      </li>
+      <li>
+        <span class="highlight-value">12</span>
+        <span class="highlight-label">Ambiguities found in hemodialysis specifications</span>
+      </li>
+      <li>
+        <span class="highlight-value">84.0%</span>
+        <span class="highlight-label">Full repair rate on AWS IAM policy tasks</span>
+      </li>
+      <li>
+        <span class="highlight-value">93.7%</span>
+        <span class="highlight-label">Semantic equivalence for reasoning LLMs</span>
+      </li>
+    </ul>
   </header>
 
   <section id="research-interests">
