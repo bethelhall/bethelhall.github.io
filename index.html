@@ -182,6 +182,38 @@
       text-decoration-color: var(--accent);
     }
 
+    .spotlight {
+      margin-top: 1.4rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid #c8e8f8;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: #f3fbff;
+    }
+
+    .spotlight-label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .spotlight a {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration-color: #9fd7f1;
+    }
+
+    .spotlight p {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
     section {
       padding: 3rem 0;
       border-bottom: 1px solid var(--border);
@@ -210,6 +242,49 @@
     .update-list li:first-child {
       border-top: 0;
       padding-top: 0;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .project {
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .project:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .project h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.03rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .project p {
+      max-width: 720px;
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
+    }
+
+    .project-links a {
+      font-weight: 500;
+      text-decoration-color: #9fd7f1;
     }
 
     .pub {
@@ -315,6 +390,7 @@
     <a class="site-mark" href="#about">Bethel Hall</a>
     <div class="site-links">
       <a href="#research-interests">Research</a>
+      <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
       <a href="#updates">Updates</a>
       <a href="#contact">Contact</a>
@@ -343,6 +419,16 @@
           through neuro-symbolic methods, formal verification, program synthesis, and policy reasoning.
         </p>
 
+        <div class="spotlight">
+          <span class="spotlight-label">Latest work</span>
+          <a href="https://arxiv.org/abs/2605.13817">
+            Neurosymbolic Auditing of Natural-Language Software Requirements
+          </a>
+          <p>
+            A neurosymbolic approach for auditing ambiguous, inconsistent, and underspecified software requirements with LLMs and SMT solvers.
+          </p>
+        </div>
+
         <nav class="contact" id="contact" aria-label="Contact and profile links">
           <a href="mailto:bethelroger33@gmail.com">Email</a>
           <a href="data/Resume-BHall.pdf">CV</a>
@@ -363,6 +449,42 @@
       <li>Large language models for software engineering</li>
       <li>Formal verification, program synthesis, and correctness guarantees</li>
     </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <article class="project">
+        <h3>VERIMED</h3>
+        <p>
+          A neurosymbolic pipeline for auditing natural-language medical-device software requirements using LLMs and SMT solvers.
+        </p>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2605.13817">Paper</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>CloudFix</h3>
+        <p>
+          An LLM-based system for repairing cloud access-control policies and improving policy correctness.
+        </p>
+        <div class="project-links">
+          <a href="https://www.arxiv.org/abs/2512.09957">Paper</a>
+          <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Access-Control Policy Synthesis and Summarization</h3>
+        <p>
+          A study of how large language models synthesize and summarize access-control policies for software security workflows.
+        </p>
+        <div class="project-links">
+          <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section id="publications">
