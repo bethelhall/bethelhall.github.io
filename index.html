@@ -287,6 +287,110 @@
       text-decoration-color: #9fd7f1;
     }
 
+    .project-tags,
+    .project-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.7rem;
+    }
+
+    .project-tags span {
+      padding: 0.16rem 0.45rem;
+      border: 1px solid #c8e8f8;
+      border-radius: 999px;
+      background: #f3fbff;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .project-stats span {
+      padding: 0.25rem 0.5rem;
+      border-left: 3px solid var(--accent);
+      background: #f7fbfd;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 500;
+    }
+
+    .project-math {
+      margin-top: 0.85rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fbfbfa;
+    }
+
+    .math-label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .math-line {
+      overflow-x: auto;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      white-space: nowrap;
+    }
+
+    .project-figure {
+      margin: 0.85rem 0 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.4rem;
+      align-items: stretch;
+    }
+
+    .flow span {
+      position: relative;
+      display: flex;
+      min-height: 3.25rem;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid #c8e8f8;
+      border-radius: 8px;
+      background: #f3fbff;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .flow span:not(:last-child)::after {
+      content: ">";
+      position: absolute;
+      right: -0.34rem;
+      top: 50%;
+      z-index: 1;
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.55rem;
+      line-height: 0.7rem;
+      transform: translateY(-50%);
+    }
+
+    figcaption {
+      margin-top: 0.4rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
     .pub {
       padding: 1.25rem 0;
       border-top: 1px solid var(--border);
@@ -379,6 +483,18 @@
       section {
         padding: 2.3rem 0;
       }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow span:not(:last-child)::after {
+        bottom: -0.34rem;
+        left: 50%;
+        right: auto;
+        top: auto;
+        transform: translateX(-50%) rotate(90deg);
+      }
     }
   </style>
 </head>
@@ -457,8 +573,33 @@
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          A neurosymbolic pipeline for auditing natural-language medical-device software requirements using LLMs and SMT solvers.
+          A neurosymbolic auditing pipeline for medical-device software requirements. VERIMED translates natural-language requirements into a unified SMT model, checks consistency, vacuousness, violatability, redundancy, and uses repeated formalization to expose ambiguity in the original text.
         </p>
+        <div class="project-tags">
+          <span>Natural-language requirements</span>
+          <span>SMT</span>
+          <span>Z3</span>
+          <span>Counterexample-guided repair</span>
+        </div>
+        <div class="project-stats">
+          <span>64/64 hemodialysis requirements formalized</span>
+          <span>55.4% to 98.5% verified QA accuracy with SMT counterexamples</span>
+          <span>12/64 ambiguity-sensitive requirements reduced to 0/64</span>
+        </div>
+        <div class="project-math">
+          <span class="math-label">Core formalization</span>
+          <div class="math-line">&rho;<sub>i</sub>(x) &equiv; p<sub>i</sub>(x) &rArr; q<sub>i</sub>(x), &nbsp; M = C &and; &rho;<sub>1</sub> &and; ... &and; &rho;<sub>n</sub></div>
+          <div class="math-line">Ambiguity check: C &and; (&rho;<sup>a</sup> &and; &not;&rho;<sup>b</sup>) and C &and; (&rho;<sup>b</sup> &and; &not;&rho;<sup>a</sup>) must both be UNSAT.</div>
+        </div>
+        <figure class="project-figure">
+          <div class="flow">
+            <span>Requirements</span>
+            <span>Repeated LLM formalization</span>
+            <span>Bidirectional SMT checks</span>
+            <span>Clarified specification</span>
+          </div>
+          <figcaption>Figure: VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
+        </figure>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2605.13817">Paper</a>
         </div>
@@ -467,10 +608,35 @@
       <article class="project">
         <h3>CloudFix</h3>
         <p>
-          An LLM-based system for repairing cloud access-control policies and improving policy correctness.
+          An automated repair framework for AWS IAM policies that combines formal-methods fault localization with LLM-generated candidate repairs. CloudFix maps failed requests to responsible policy statements, prompts the model with those failure causes, and validates each candidate repair with SMT-based policy analysis.
         </p>
+        <div class="project-tags">
+          <span>AWS IAM</span>
+          <span>Policy repair</span>
+          <span>Fault localization</span>
+          <span>Quacky + Z3</span>
+        </div>
+        <div class="project-stats">
+          <span>282 real-world AWS IAM policies</span>
+          <span>84.0% full repair rate on 10-request tasks vs. 48.2% baseline</span>
+          <span>54.3% complete repairs on 30-request tasks vs. 22.3% baseline</span>
+        </div>
+        <div class="project-math">
+          <span class="math-label">Repair objective</span>
+          <div class="math-line">Accuracy = R<sub>c</sub> / R<sub>total</sub> &times; 100%</div>
+          <div class="math-line">ValidateGoal(P, R): every must-allow request satisfies P and every must-deny request does not satisfy P.</div>
+        </div>
+        <figure class="project-figure">
+          <div class="flow">
+            <span>Faulty policy + requests</span>
+            <span>SMT goal validation</span>
+            <span>Fault localization report</span>
+            <span>LLM repair + verification</span>
+          </div>
+          <figcaption>Figure: CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
+        </figure>
         <div class="project-links">
-          <a href="https://www.arxiv.org/abs/2512.09957">Paper</a>
+          <a href="https://arxiv.org/abs/2512.09957">Paper</a>
           <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
         </div>
       </article>
@@ -478,8 +644,33 @@
       <article class="project">
         <h3>Access-Control Policy Synthesis and Summarization</h3>
         <p>
-          A study of how large language models synthesize and summarize access-control policies for software security workflows.
+          A study of how well LLMs synthesize, explain, and summarize cloud access-control policies. The project shows that syntactically plausible policy generation can still fail semantic equivalence, then introduces an automata-based request summarizer that turns policy behavior into interpretable regular expressions verified with model counting.
         </p>
+        <div class="project-tags">
+          <span>Policy synthesis</span>
+          <span>Semantic equivalence</span>
+          <span>Automata</span>
+          <span>Model counting</span>
+        </div>
+        <div class="project-stats">
+          <span>15.4% to 45.8% semantic equivalence for non-reasoning LLMs</span>
+          <span>86.4% to 93.7% semantic equivalence for reasoning LLMs</span>
+          <span>0.889 mean similarity for semantic request summaries</span>
+        </div>
+        <div class="project-math">
+          <span class="math-label">Policy semantics</span>
+          <div class="math-line">Allow(P) = {(&delta;, a, r, e) : &exist;&rho;<sub>i</sub> &in; P, &rho;<sub>i</sub> = Allow &and; &not;&exist;&rho;<sub>j</sub> &in; P, &rho;<sub>j</sub> = Deny}</div>
+          <div class="math-line">J(R<sub>DFA</sub>, R<sub>LLM</sub>) = Count(A<sub>intersection</sub>) / Count(A<sub>union</sub>)</div>
+        </div>
+        <figure class="project-figure">
+          <div class="flow">
+            <span>Policy</span>
+            <span>SMT encoding</span>
+            <span>Multi-track DFA</span>
+            <span>Verified regex summary</span>
+          </div>
+          <figcaption>Figure: the summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
+        </figure>
         <div class="project-links">
           <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
         </div>
@@ -502,11 +693,11 @@
 
     <div class="pub">
       <h3>
-        <a class="pub-title" href="https://www.arxiv.org/abs/2512.09957">
+        <a class="pub-title" href="https://arxiv.org/abs/2512.09957">
           CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
         </a>
       </h3>
-      <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Unagro, William Eiers</div>
+      <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Ungaro, William Eiers</div>
       <div class="pub-venue">SANER 2026 (Research Track)</div>
       <div class="pub-links">
         <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
