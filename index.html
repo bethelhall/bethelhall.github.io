@@ -62,7 +62,7 @@
     }
 
     .container {
-      max-width: 920px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 1.5rem 3rem;
     }
@@ -302,8 +302,8 @@
 
     .project {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
-      gap: 1.35rem;
+      grid-template-columns: minmax(0, 0.85fr) minmax(460px, 1.15fr);
+      gap: 1.6rem;
       align-items: start;
       padding: 1.2rem 0;
       border-top: 1px solid var(--border);
@@ -383,43 +383,42 @@
       margin: 0;
     }
 
-    .figure-placeholder {
+    .figure-grid {
       display: grid;
-      min-height: 165px;
-      place-items: center;
-      padding: 1rem;
-      border: 1px dashed #9fd7f1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .figure-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border);
       border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(0, 119, 182, 0.08), rgba(255, 255, 255, 0) 55%),
-        #f7fbfd;
-      text-align: center;
+      background: #ffffff;
     }
 
-    .placeholder-label {
+    .figure-panel img {
       display: block;
+      width: 100%;
+      aspect-ratio: 2 / 1;
+      height: auto;
+      padding: 0.35rem;
+      object-fit: contain;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+
+    .figure-label {
+      display: block;
+      padding: 0.42rem 0.55rem;
+      border-top: 1px solid var(--border);
       color: var(--accent-dark);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      line-height: 1;
       text-transform: uppercase;
-    }
-
-    .figure-placeholder strong {
-      display: block;
-      margin-top: 0.35rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      line-height: 1.3;
-    }
-
-    .figure-placeholder small {
-      display: block;
-      max-width: 18rem;
-      margin-top: 0.35rem;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.4;
     }
 
     figcaption {
@@ -538,6 +537,10 @@
       .project-figure {
         grid-row: auto;
         margin-top: 0.8rem;
+      }
+
+      .figure-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -689,11 +692,14 @@
           <span>12/64 ambiguity-sensitive requirements reduced to 0/64</span>
         </div>
         <figure class="project-figure">
-          <div class="figure-placeholder" role="img" aria-label="Placeholder for VERIMED method figure">
-            <div>
-              <span class="placeholder-label">Figure placeholder</span>
-              <strong>VERIMED method overview</strong>
-              <small>Replace with the ambiguity-resolution or architecture figure.</small>
+          <div class="figure-grid">
+            <div class="figure-panel">
+              <img src="images/web_fig/method_verimed.png" alt="VERIMED method overview">
+              <span class="figure-label">Method</span>
+            </div>
+            <div class="figure-panel">
+              <img src="images/web_fig/verimed_res.png" alt="VERIMED experimental results">
+              <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
@@ -720,11 +726,14 @@
           <span>54.3% complete repairs on 30-request tasks vs. 22.3% baseline</span>
         </div>
         <figure class="project-figure">
-          <div class="figure-placeholder" role="img" aria-label="Placeholder for CloudFix method figure">
-            <div>
-              <span class="placeholder-label">Figure placeholder</span>
-              <strong>CloudFix repair loop</strong>
-              <small>Replace with the fault-localization and repair architecture figure.</small>
+          <div class="figure-grid">
+            <div class="figure-panel">
+              <img src="images/web_fig/method_cloudfix.jpg" alt="CloudFix repair method overview">
+              <span class="figure-label">Method</span>
+            </div>
+            <div class="figure-panel">
+              <img src="images/web_fig/cloudfix_res.png" alt="CloudFix experimental results">
+              <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
@@ -752,11 +761,14 @@
           <span>0.889 mean similarity for semantic request summaries</span>
         </div>
         <figure class="project-figure">
-          <div class="figure-placeholder" role="img" aria-label="Placeholder for policy summarization figure">
-            <div>
-              <span class="placeholder-label">Figure placeholder</span>
-              <strong>Policy summarization pipeline</strong>
-              <small>Replace with the automata-to-regex summarization figure.</small>
+          <div class="figure-grid">
+            <div class="figure-panel">
+              <img src="images/web_fig/method_pol.png" alt="Policy summarization method overview">
+              <span class="figure-label">Method</span>
+            </div>
+            <div class="figure-panel">
+              <img src="images/web_fig/pol_res.png" alt="Policy summarization experimental results">
+              <span class="figure-label">Results</span>
             </div>
           </div>
           <figcaption>The summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
