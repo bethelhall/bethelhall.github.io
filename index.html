@@ -5,125 +5,224 @@
   <title>Bethel Hall</title>
   <link rel="icon" type="image/x-icon" href="images/beth.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bethel Hall is a Ph.D. student in Computer Science at Stevens Institute of Technology working on reliable large language models, neuro-symbolic AI, and formal verification." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&amp;family=Libre+Baskerville:wght@400;700&amp;display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #ffffff;
-      --text: #111111;
-      --muted: #555555;
-      --border: #dddddd;
-      --accent: #9b2c2c;
-      --accent-soft: rgba(155, 44, 44, 0.12);
+      --text: #171717;
+      --muted: #666666;
+      --border: #e3e0da;
+      --accent: #8b2b2b;
+      --accent-dark: #5f1e1e;
     }
 
-    html { font-size: 18.5px; }
+    html {
+      font-size: 17px;
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: 'Barlow', sans-serif;
-      background: var(--bg);
+      background:
+        linear-gradient(180deg, #fbfbfa 0, #ffffff 420px),
+        var(--bg);
       color: var(--text);
       line-height: 1.65;
-      letter-spacing: 0.012em;
+      letter-spacing: 0;
     }
 
     a {
-      color: var(--text);
+      color: var(--accent);
       text-decoration: underline;
       text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
     }
 
-    a:hover { color: #000; }
+    a:hover {
+      color: var(--accent-dark);
+    }
 
-    h1, h2, h3, h4 {
+    h1, h2, h3 {
       font-family: 'Libre Baskerville', serif;
       font-weight: 700;
       line-height: 1.3;
-      letter-spacing: 0.015em;
+      letter-spacing: 0;
       margin: 0;
     }
 
-    h1 { font-size: 3rem; }
-    h2 { font-size: 1.8rem; margin: 4rem 0 1.3rem; }
-    h3, h4 { font-size: 1rem; }
+    p {
+      margin: 0 0 1rem;
+    }
 
     .container {
-      max-width: 760px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 3rem 1.25rem;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .site-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .site-mark {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .site-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.9rem;
+    }
+
+    .site-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-links a:hover {
+      color: var(--text);
     }
 
     header {
-      margin-bottom: 3.5rem;
-      padding-bottom: 2.5rem;
+      padding: 3.4rem 0 3rem;
       border-bottom: 1px solid var(--border);
     }
 
-    /* --- Hero layout --- */
     .intro {
       display: grid;
-      grid-template-columns: 230px 1fr;
-      gap: 2.5rem;
-      align-items: start; /* important for clean alignment */
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
     }
 
     .profile {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
     }
 
     .profile img {
-      width: 210px;
-      height: 210px;
+      width: 220px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 18px;
+      border-radius: 8px;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
     }
 
-    .profile-name {
-      margin-top: 0.9rem;
-      font-family: 'Libre Baskerville', serif;
-      font-weight: 900;
-      font-size: 1.7rem;
-      line-height: 1.3;
+    .intro-copy h1 {
+      margin-bottom: 0.35rem;
+      font-size: clamp(2.25rem, 5vw, 3.2rem);
     }
-    
 
-    .profile-name span {
+    .intro-copy h1 span {
       display: block;
-      font-size: 0.95rem;
-      font-weight: 500;
+      margin-top: 0.25rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
       color: var(--muted);
-      margin-top: 0.15rem;
     }
 
-    .profile-affiliation {
-      margin-top: 0.6rem;
+    .role {
+      margin-bottom: 1.15rem;
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.45;
     }
 
-    .contact {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
+    .intro-copy {
+      max-width: 620px;
+      padding-top: 0.2rem;
     }
 
-    section { margin-bottom: 3.5rem; }
+    .intro-copy p {
+      font-size: 1.04rem;
+    }
 
-    /* --- Publications --- */
-    .pub { margin-bottom: 1.5rem; }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.9rem;
+      margin-top: 1.35rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .contact a {
+      color: var(--text);
+      font-weight: 500;
+      text-decoration-color: var(--border);
+    }
+
+    .contact a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section h2 {
+      margin-bottom: 1.1rem;
+      font-size: 1.35rem;
+    }
+
+    .interest-list,
+    .update-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .interest-list li,
+    .update-list li {
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.97rem;
+    }
+
+    .interest-list li:first-child,
+    .update-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .pub {
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .pub:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .pub h3 {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
 
     .pub-title {
       color: var(--accent);
@@ -132,41 +231,69 @@
 
     .pub-title:hover { text-decoration: underline; }
 
-    .pub-authors { font-size: 0.95rem; }
-    .pub-venue { font-size: 0.9rem; color: var(--muted); }
-    .pub-links { font-size: 0.9rem; }
+    .pub-authors {
+      margin-top: 0.25rem;
+      font-size: 0.95rem;
+    }
 
-    /* --- Keyword highlight --- */
-    .kw {
-      background: var(--accent-soft);
-      color: var(--accent);
-      padding: 0.08rem 0.28rem;
-      border-radius: 7px;
+    .pub-venue {
+      margin-top: 0.1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pub-links {
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .date {
+      color: var(--muted);
       font-weight: 600;
-      white-space: nowrap;
     }
 
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
+      padding: 2rem 1.5rem;
       text-align: center;
       font-size: 0.85rem;
       color: var(--muted);
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 720px) {
+      .container {
+        padding-inline: 1.1rem;
+      }
+
+      .site-nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .site-links {
+        justify-content: flex-start;
+      }
+
+      header {
+        padding: 2.4rem 0 2.2rem;
+      }
+
       .intro {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: 1.6rem;
+      }
+
+      .profile {
+        align-items: flex-start;
       }
 
       .profile img {
-        width: 190px;
-        height: 190px;
-        margin: 0 auto;
+        width: 180px;
+        height: 180px;
       }
 
-      .kw { white-space: normal; }
+      section {
+        padding: 2.3rem 0;
+      }
     }
   </style>
 </head>
@@ -174,45 +301,46 @@
 <body>
 
 <div class="container">
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="site-mark" href="#about">Bethel Hall</a>
+    <div class="site-links">
+      <a href="#research-interests">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#updates">Updates</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
   <header id="about">
     <div class="intro">
 
-      <!-- LEFT: photo + name + affiliation -->
       <div class="profile">
         <img src="images/beth.jpg" alt="Bethel Hall" />
-
-        <div class="profile-name">
-          Bethel Hall
-          <span>(ቤቴል ሆል)</span>
-        </div>
-
-        <div class="profile-affiliation">
-          Ph.D. Student, Computer Science<br />
-          Stevens Institute of Technology
-        </div>
       </div>
 
-      <!-- RIGHT: description -->
-      <div>
-        <p style="margin-top:0;">
-          Hey! I am Bethel Hall, a Ph.D student at
-          <a href="https://www.stevens.edu" style="color:var(--accent);">Stevens Institute of Technology</a>.
-          I am super grateful to be advised by
-          <a href="https://www.stevens.edu/faculty/william-eiers" style="color:var(--accent);">Prof. William Eiers</a>.
-         My research focuses on improving the reliability and correctness of <strong>Large Language Models (LLMs)</strong>
-       through <strong>neuro-symbolic methods</strong>.
-        My work explores how formal verification techniques can enhance LLM correctness and provide guarantees about their behavior.
+      <div class="intro-copy">
+        <h1>
+          Bethel Hall
+          <span>(ቤቴል ሆል)</span>
+        </h1>
+        <div class="role">Ph.D. student in Computer Science · Stevens Institute of Technology</div>
+        <p>
+          I am a Ph.D. student in Computer Science at
+          <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
+          advised by
+          <a href="https://www.stevens.edu/faculty/william-eiers">Prof. William Eiers</a>.
+          My research focuses on improving the reliability and correctness of large language models
+          through neuro-symbolic methods, formal verification, program synthesis, and policy reasoning.
         </p>
 
-        <div class="contact" id="contact">
+        <nav class="contact" id="contact" aria-label="Contact and profile links">
           <a href="mailto:bethelroger33@gmail.com">Email</a>
           <a href="data/Resume-BHall.pdf">CV</a>
-          <a href="https://scholar.google.com/citations?user=tKZvJ38AAAAJ&hl=en">Google Scholar</a>
+          <a href="https://scholar.google.com/citations?user=tKZvJ38AAAAJ&amp;hl=en">Google Scholar</a>
           <a href="https://github.com/bethelhall">GitHub</a>
           <a href="https://www.linkedin.com/in/bethelhall">LinkedIn</a>
           <a href="https://orcid.org/0000-0001-7479-8965">ORCID</a>
-        </div>
+        </nav>
       </div>
 
     </div>
@@ -220,10 +348,10 @@
 
   <section id="research-interests">
     <h2>Research Interests</h2>
-    <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
-      <li>• Neuro-symbolic AI and formal reasoning</li>
-      <li>• Large language models for software engineering</li>
-      <li>• Formal verification, program synthesis, and correctness guarantees</li>
+    <ul class="interest-list">
+      <li>Neuro-symbolic AI and formal reasoning</li>
+      <li>Large language models for software engineering</li>
+      <li>Formal verification, program synthesis, and correctness guarantees</li>
     </ul>
   </section>
 
@@ -231,11 +359,11 @@
     <h2>Publications</h2>
 
     <div class="pub">
-      <h4>
+      <h3>
         <a class="pub-title" href="https://www.arxiv.org/abs/2512.09957">
           CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
         </a>
-      </h4>
+      </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Unagro, William Eiers</div>
       <div class="pub-venue">SANER 2026 (Research Track)</div>
       <div class="pub-links">
@@ -244,31 +372,28 @@
     </div>
 
     <div class="pub">
-      <h4>
+      <h3>
         <a class="pub-title" href="https://arxiv.org/pdf/2510.20692">
           Exploring Large Language Models for Access Control Policy Synthesis and Summarization
         </a>
-      </h4>
+      </h3>
       <div class="pub-authors">Adarsh Vatsa, <strong>Bethel Hall</strong>, William Eiers</div>
       <div class="pub-venue">Preprint</div>
-      <div class="pub-links">
-        <a href="#">Code</a>
-      </div>
     </div>
 
   </section>
 
   <section id="updates">
-  <h2>Updates</h2>
-  <ul style="list-style: none; padding-left: 0; font-size: 0.95rem;">
-    <li>✓ <strong>[Dec 2025]</strong> — Paper accepted to <em>SANER 2026</em> (Research Track).</li>
-    <li>✓ <strong>[Aug 2021]</strong> — Selected as a <em>Global UGRAD Scholar</em> by the U.S. Department of State.</li>
-    <li>✓ <strong>[July 2020]</strong> — Awarded <em>Palantir Global Impact Scholar</em> by Palantir Technologies Inc.</li>
-    <li>✓ <strong>[May 2020]</strong> — Started working as a research intern at the University of Michigan,
-      <a href="https://aura.engin.umich.edu/past-cohorts/aura-2020/students-2020">AURA 2020</a>.
-    </li>
-  </ul>
-</section>
+    <h2>Updates</h2>
+    <ul class="update-list">
+      <li><span class="date">Dec 2025</span>: Paper accepted to <em>SANER 2026</em> (Research Track).</li>
+      <li><span class="date">Aug 2021</span>: Selected as a <em>Global UGRAD Scholar</em> by the U.S. Department of State.</li>
+      <li><span class="date">July 2020</span>: Awarded <em>Palantir Global Impact Scholar</em> by Palantir Technologies Inc.</li>
+      <li><span class="date">May 2020</span>: Started working as a research intern at the University of Michigan,
+        <a href="https://aura.engin.umich.edu/past-cohorts/aura-2020/students-2020">AURA 2020</a>.
+      </li>
+    </ul>
+  </section>
 
 
 </div>
