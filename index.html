@@ -670,7 +670,7 @@
             </svg>
             <span>Email</span>
           </a>
-          <a href="data/Resume-BHall.pdf" aria-label="Download CV">
+          <a href="data/CV-BethelHall.pdf" aria-label="Download CV">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 3h7l5 5v13H7z" />
               <path d="M14 3v5h5" />
@@ -733,6 +733,7 @@
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, William Eiers</div>
       <div class="pub-venue">Preprint, arXiv:2605.13817</div>
+      <div class="pub-links">We show that disagreements between independently-generated LLM formalizations of the same requirement reliably signal latent ambiguity, and that SMT-generated counterexamples can localize and repair it.</div>
     </div>
 
     <div class="pub">
@@ -813,7 +814,7 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>VERIMED flags requirements where independent LLM formalizations disagree, exposing ambiguity that can be difficult to catch through manual review.</figcaption>
+          <figcaption>Key insight: ambiguity in a requirement causes independent LLMs to produce contradictory formalizations — a disagreement SMT can detect and localize with a concrete counterexample.</figcaption>
         </figure>
       </article>
 
@@ -868,7 +869,7 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>CloudFix formally verifies every LLM-generated patch before accepting it, reducing the risk of accepting an unverified repair.</figcaption>
+          <figcaption>Key insight: SMT fault localization identifies which specific policy statement is wrong before the LLM is asked to repair it, dramatically narrowing the repair search space.</figcaption>
         </figure>
       </article>
 
@@ -923,7 +924,7 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>The summarizer converts formal policy logic into verified natural-language descriptions, making access control auditable without reading raw JSON.</figcaption>
+          <figcaption>Key insight: automata-based equivalence checking verifies that a natural-language summary is semantically correct, not just fluent — guaranteeing the description matches what the policy actually enforces.</figcaption>
         </figure>
       </article>
     </div>
@@ -933,6 +934,7 @@
     <h2>News</h2>
     <ul class="update-list">
       <li><span class="date">May 2026</span>: Preprint released, <em>Neurosymbolic Auditing of Natural-Language Software Requirements</em> (<a href="https://arxiv.org/abs/2605.13817">arXiv</a>).</li>
+      <li><span class="date">Mar 2026</span>: Presented <em>CloudFix</em> at SANER 2026, Hammamet, Tunisia.</li>
       <li><span class="date">Dec 2025</span>: Paper accepted to <em>SANER 2026</em> (Research Track).</li>
       <li><span class="date">Aug 2021</span>: Selected as a <em>Global UGRAD Scholar</em> by the U.S. Department of State.</li>
     </ul>
@@ -941,7 +943,8 @@
 
 </div>
 
-<footer>
+<footer id="contact">
+  <div><a href="mailto:bethelroger33@gmail.com">bethelroger33@gmail.com</a></div>
   <div class="last-updated">Last updated May 15, 2026</div>
 </footer>
 
