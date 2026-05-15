@@ -538,6 +538,21 @@
       font-size: 0.9rem;
     }
 
+    .pub-badge {
+      display: inline-block;
+      margin-left: 0.5rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      vertical-align: middle;
+      position: relative;
+      top: -0.1rem;
+    }
+
     .date {
       color: var(--muted);
       font-weight: 600;
@@ -696,6 +711,7 @@
 
   <section id="research-interests">
     <h2>Research Interests</h2>
+    <p class="section-note">I build systems that make AI provably correct, not just probably correct.</p>
     <ul class="interest-list">
       <li>Neuro-symbolic AI and formal reasoning</li>
       <li>Large language models for software engineering</li>
@@ -720,7 +736,7 @@
       <h3>
         <a class="pub-title" href="https://arxiv.org/abs/2512.09957">
           CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
-        </a>
+        </a><span class="pub-badge">SANER 2026</span>
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Ungaro, William Eiers</div>
       <div class="pub-venue">SANER 2026 (Research Track)</div>
