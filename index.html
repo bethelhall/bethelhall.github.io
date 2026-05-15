@@ -269,12 +269,13 @@
 
     .update-list {
       border-left: 2px solid var(--border);
-      padding-left: 1.25rem;
+      padding-left: 1.5rem;
+      margin-top: 0.25rem;
     }
 
     .update-list li {
       position: relative;
-      padding: 0.6rem 0;
+      padding: 0.55rem 0;
       font-size: 1rem;
       color: var(--text);
     }
@@ -282,23 +283,34 @@
     .update-list li::before {
       content: '';
       position: absolute;
-      left: -1.44rem;
-      top: 1rem;
-      width: 0.5rem;
-      height: 0.5rem;
+      left: -1.59rem;
+      top: 1.05rem;
+      width: 0.55rem;
+      height: 0.55rem;
       border-radius: 50%;
-      background: var(--border);
-      border: 2px solid #fff;
+      background: #ffffff;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 3px #f0f8fd;
     }
 
     .update-list .year-sep {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      padding: 0.9rem 0 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      padding: 1.1rem 0 0.3rem;
       pointer-events: none;
+    }
+
+    .update-list .year-sep::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
     .update-list .year-sep::before {
