@@ -744,7 +744,7 @@
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          Developed a neurosymbolic auditing workflow that combined LLM-generated formalizations with SMT solving to detect ambiguity, inconsistency, and underspecification in natural-language software requirements.
+          Ambiguous requirements are a root cause of costly defects in safety-critical software. VERIMED automatically detects ambiguity, inconsistency, and underspecification in natural-language requirements by formalizing them with LLMs and using SMT solving to surface contradictions that manual review misses.
         </p>
         <div class="project-tags">
           <span>Natural-language requirements</span>
@@ -791,14 +791,14 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>VERIMED treats disagreement between independent formalizations as a solver-checkable signal of ambiguity.</figcaption>
+          <figcaption>VERIMED flags requirements where independent LLM formalizations disagree — exposing ambiguity that human reviewers routinely miss.</figcaption>
         </figure>
       </article>
 
       <article class="project">
         <h3>CloudFix</h3>
         <p>
-          Developed CloudFix, an automated AWS IAM policy-repair system that used SMT-based fault localization to guide LLM-generated patches and validated each candidate against must-allow and must-deny requests.
+          Misconfigured IAM policies are a leading cause of cloud security incidents. CloudFix automatically repairs broken AWS access-control policies: SMT-based fault localization pinpoints the exact statement to fix, LLMs generate candidate patches, and formal verification confirms correctness before any change is accepted.
         </p>
         <div class="project-tags">
           <span>AWS IAM</span>
@@ -846,14 +846,14 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>CloudFix closes the loop by validating every LLM repair candidate before accepting it.</figcaption>
+          <figcaption>CloudFix formally verifies every LLM-generated patch before accepting it — eliminating the risk of deploying an unverified fix.</figcaption>
         </figure>
       </article>
 
       <article class="project">
         <h3>Access-Control Policy Synthesis and Summarization</h3>
         <p>
-          Evaluated LLMs on cloud access-control policy synthesis and built an automata-based summarization tool that converted policy behavior into verified, interpretable regular expressions.
+          Benchmarked leading LLMs on cloud access-control policy generation and built a formal summarization tool that translates opaque policy logic into verified, plain-language descriptions. The tool uses automata theory to guarantee summaries are semantically correct — giving cloud engineers a reliable way to audit what any policy actually permits.
         </p>
         <div class="project-tags">
           <span>Policy synthesis</span>
@@ -901,7 +901,7 @@
               <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>The summarizer preserves formal policy semantics while producing a human-readable description of allowed requests.</figcaption>
+          <figcaption>The summarizer converts formal policy logic into verified natural-language descriptions — making access control auditable without reading raw JSON.</figcaption>
         </figure>
       </article>
     </div>
