@@ -267,15 +267,42 @@
       font-size: 0.97rem;
     }
 
-    .update-list li {
-      padding: 0.65rem 0;
-      border-top: 1px solid var(--border);
-      font-size: 0.97rem;
+    .update-list {
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
     }
 
-    .update-list li:first-child {
-      border-top: 0;
-      padding-top: 0;
+    .update-list li {
+      position: relative;
+      padding: 0.6rem 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .update-list li::before {
+      content: '';
+      position: absolute;
+      left: -1.44rem;
+      top: 1rem;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid #fff;
+    }
+
+    .update-list .year-sep {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding: 0.9rem 0 0.2rem;
+      pointer-events: none;
+    }
+
+    .update-list .year-sep::before {
+      display: none;
     }
 
     .project-list {
@@ -607,8 +634,11 @@
     }
 
     .date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
       color: var(--muted);
-      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     footer {
@@ -986,9 +1016,12 @@
   <section id="updates">
     <h2>News</h2>
     <ul class="update-list">
+      <li class="year-sep">2026</li>
       <li><span class="date">May 2026</span>: Preprint released, <em>Neurosymbolic Auditing of Natural-Language Software Requirements</em> (<a href="https://arxiv.org/abs/2605.13817">arXiv</a>).</li>
       <li><span class="date">Mar 2026</span>: Presented <em>CloudFix</em> at SANER 2026, Limassol, Cyprus.</li>
+      <li class="year-sep">2025</li>
       <li><span class="date">Dec 2025</span>: Paper accepted to <em>SANER 2026</em> (Research Track).</li>
+      <li class="year-sep">2021</li>
       <li><span class="date">Aug 2021</span>: Selected as a <em>Global UGRAD Scholar</em> by the U.S. Department of State.</li>
     </ul>
   </section>
