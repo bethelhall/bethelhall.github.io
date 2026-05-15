@@ -964,10 +964,10 @@
           POLICYSUMMARIZER answers the question raw JSON cannot: what requests does this policy actually allow? Given an AWS, Azure, or GCP access-control policy, it encodes the policy into a finite-state automaton that precisely captures the set of allowed requests, extracts a regular expression from that automaton, and uses an LLM to simplify it into a human-readable characterization. Model counting verifies the simplified summary against the formal representation before accepting it, falling back to the automata-derived expression if fidelity drops below a configurable threshold. A second mode characterizes the semantic difference between two policies — surfacing exactly which requests one allows that the other does not, which raw JSON comparison cannot provide. This work also establishes the Verifiable Synthesis Paradox: LLMs produce fluent policy explanations yet fail to reconstruct semantically equivalent policies even when given their own explanations as input, motivating the neurosymbolic architecture.
         </p>
         <div class="project-tags">
-          <span>Cloud access control policy</span>
-          <span>Semantic equivalence</span>
-          <span>Large Language Models</span>
-          <span>Model counting</span>
+          <span>LLM evaluation</span>
+          <span>Neurosymbolic AI</span>
+          <span>Regex simplification</span>
+          <span>Human-AI collaboration</span>
         </div>
         <div class="project-stats">
           <span>Non-reasoning LLMs top out at 45.8% semantic equivalence, highlighting deployment reliability limits</span>
