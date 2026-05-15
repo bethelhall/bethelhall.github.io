@@ -146,10 +146,33 @@
     }
 
     .role {
-      margin-bottom: 1.15rem;
+      margin-bottom: 0.6rem;
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.45;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1.15rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid #a7f3d0;
+      border-radius: 999px;
+      background: #f0fdf4;
+      color: #166534;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .availability::before {
+      content: '';
+      display: inline-block;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #16a34a;
     }
 
     .intro-copy {
@@ -651,6 +674,7 @@
           <span>(ቤቴል ሆል)</span>
         </h1>
         <div class="role">Ph.D. student in Computer Science · Stevens Institute of Technology · Expected 2028</div>
+        <div class="availability">Seeking summer 2026 research internships at AI labs and industry research groups</div>
         <p>
           I'm a Ph.D. student in Computer Science at
           <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
@@ -658,7 +682,7 @@
           My research centers on improving the reliability of large language models through neurosymbolic methods, with a focus on building systems that provide hard correctness guarantees on their outputs. My work explores how to bring these guarantees to high-stakes domains where LLMs are increasingly deployed, such as finance, healthcare, and cloud infrastructure.
         </p>
         <p>
-          I am seeking research internships at AI labs and industry research groups in AI safety, LLM systems, and cloud security. Outside research, I enjoy biking, hiking, and running.
+          Outside research, I enjoy biking, hiking, and running.
         </p>
 
         <nav class="contact" id="contact" aria-label="Contact and profile links">
