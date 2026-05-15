@@ -652,14 +652,14 @@
         </h1>
         <div class="role">Ph.D. student in Computer Science · Stevens Institute of Technology · Expected 2028</div>
         <p>
-          I am a Ph.D. student in Computer Science at
+          I build systems that make AI outputs checkable, not just plausible. I am a Ph.D. student in Computer Science at
           <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
           advised by
           <a href="https://www.stevens.edu/profile/weiers">Prof. William Eiers</a>.
-          My research sits at the intersection of LLM reliability, cloud security, and automated reasoning, using formal methods to make AI-assisted software engineering verifiable and trustworthy.
+          Across my projects, I develop neurosymbolic pipelines that pair LLM generation with formal verification to provide hard correctness guarantees — in requirements engineering, cloud security policy repair, and access control analysis.
         </p>
         <p>
-          I am seeking Summer 2027 research and engineering internships in AI safety, LLM systems, and cloud security. Outside research, I enjoy biking, hiking, and running.
+          I am seeking research internships at AI labs and industry research groups in AI safety, LLM systems, and cloud security. Outside research, I enjoy biking, hiking, and running.
         </p>
 
         <nav class="contact" id="contact" aria-label="Contact and profile links">
@@ -714,7 +714,6 @@
 
   <section id="research-interests">
     <h2>Research Interests</h2>
-    <p class="section-note">I build systems that make AI outputs checkable, not just plausible.</p>
     <ul class="interest-list">
       <li>Neuro-symbolic AI and formal reasoning</li>
       <li>Large language models for software engineering</li>
@@ -743,7 +742,7 @@
         </a><span class="pub-badge">SANER 2026</span>
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Ungaro, William Eiers</div>
-      <div class="pub-venue">SANER 2026 (Research Track)</div>
+      <div class="pub-venue" style="color: var(--accent); font-weight: 600;">SANER 2026 (Research Track)</div>
       <div class="pub-links">
         <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
       </div>
@@ -767,7 +766,7 @@
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          Ambiguous requirements are a root cause of costly defects in safety-critical software. VERIMED automatically detects ambiguity, inconsistency, and underspecification in natural-language requirements by formalizing them with LLMs and using SMT solving to surface contradictions that can be difficult to catch through manual review.
+          VERIMED is an auditing pipeline for natural-language software requirements. Before a requirement becomes a formal model or an implementation, VERIMED checks it for ambiguity, inconsistency, vacuousness, redundancy, and safety violations — producing solver-based evidence rather than subjective review. Software engineers get concrete counterexamples showing where a requirement can be read in more than one way. Verification engineers get SMT diagnostics including unsat cores, violating assignments, and redundancy flags. Safety reviewers get a global consistency check across the full requirement set.
         </p>
         <div class="project-tags">
           <span>Natural-language requirements</span>
@@ -777,7 +776,7 @@
         </div>
         <div class="project-stats">
           <span>100% formalization rate — 64/64 requirements converted without manual intervention</span>
-          <span>QA accuracy lifted from 55.4% to 98.5% using SMT counterexample feedback</span>
+          <span>QA accuracy lifted from 55.4% to 98.5% using SMT counterexample feedback (ABZ hemodialysis benchmark, n=64)</span>
           <span>Caught 12 latent ambiguities in real hemodialysis machine specifications</span>
         </div>
         <div class="project-links">
@@ -821,7 +820,7 @@
       <article class="project">
         <h3>CloudFix</h3>
         <p>
-          Misconfigured IAM policies are a common source of cloud security risk. CloudFix automatically repairs broken AWS access-control policies: SMT-based fault localization pinpoints the exact statement to fix, LLMs generate candidate patches, and formal verification confirms correctness before any change is accepted.
+          CloudFix is an LLM-assisted repair workflow for AWS IAM access-control policies. When a policy fails to satisfy its intended access specification, CloudFix uses SMT-based fault localization to identify the specific statement causing the violation, generates a targeted repair with an LLM, and verifies the patch formally before accepting it. The goal is to make policy validation, maintenance, and correction tractable at scale — replacing manual debugging with a structured, auditable repair loop.
         </p>
         <div class="project-tags">
           <span>AWS IAM</span>
@@ -874,9 +873,9 @@
       </article>
 
       <article class="project">
-        <h3>LLM Policy Synthesis Benchmark and Formal Summarizer</h3>
+        <h3>POLICYSUMMARIZER</h3>
         <p>
-          Benchmarked LLMs on cloud access-control policy generation and built a formal summarization tool that translates opaque policy logic into verified, plain-language descriptions. The tool uses automata theory to preserve policy semantics, giving cloud engineers a reliable way to audit what a policy permits.
+          Cloud access-control policies are reliability-critical artifacts, yet LLMs cannot reason about them with the precision security requires — a gap that persists even when the specification is the LLM's own explanation of the target policy. This work formalizes that finding as the Verifiable Synthesis Paradox and addresses it with POLICYSUMMARIZER: a neurosymbolic tool that encodes a policy into a finite-state automaton, extracts a regular expression characterizing all allowed requests, and uses an LLM to simplify it into a readable form. Model counting verifies the output before accepting it, falling back to the formally-derived expression if fidelity drops below a configurable threshold. In a user study, POLICYSUMMARIZER raised policy-change-review accuracy from 39% to 93% on the hardest sub-task, with 88% of participants preferring it over reading raw JSON.
         </p>
         <div class="project-tags">
           <span>Policy synthesis</span>
