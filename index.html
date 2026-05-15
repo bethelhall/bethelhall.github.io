@@ -280,22 +280,29 @@
 
     .project-list {
       display: grid;
-      gap: 1.2rem;
+      gap: 1.5rem;
     }
-
 
     .project {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: 0;
       align-items: start;
-      padding: 1.7rem 0;
-      border-top: 1px solid var(--border);
+      padding: 1.75rem 1.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fafafa;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .project:hover {
+      border-color: #9fd7f1;
+      box-shadow: 0 6px 24px rgba(0, 119, 182, 0.07);
     }
 
     .project:first-child {
-      padding-top: 0;
-      border-top: 0;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
     }
 
     .project h3 {
