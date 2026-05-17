@@ -759,8 +759,7 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="site-mark" href="#about">Bethel Hall</a>
     <div class="site-links">
-      <span style="color: var(--text); font-size: 0.82rem; font-weight: 500;">Updated May 2026</span>
-<a href="#publications">Publications</a>
+      <a href="#publications">Publications</a>
       <a href="#projects">Projects</a>
       <a href="#updates">News</a>
       <a href="mailto:bhall2@stevens.edu">Contact</a>
@@ -771,6 +770,7 @@
     <div class="intro">
 
       <div class="profile">
+        <div id="last-updated-photo" style="margin-bottom: 0.6rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--muted);"></div>
         <img src="images/beth.jpg" alt="Bethel Hall" />
       </div>
 
@@ -781,7 +781,7 @@
         </h1>
         <div class="role">Ph.D. student in Computer Science · Stevens Institute of Technology · Expected 2028</div>
         <div class="manifesto">Current AI agents are powerful but fundamentally unverifiable. My work focuses on making them reliable for high-stakes domains.</div>
-        <div class="availability">Seeking summer 2026 research internships at AI labs and industry research groups</div>
+        <div class="availability">Seeking summer 2027 research internships at AI labs and industry research groups</div>
         <p>
           I'm a Ph.D. student in Computer Science at
           <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
@@ -1073,7 +1073,7 @@
 
 <footer id="contact">
   <div>Contact me: bhall2 at stevens dot edu</div>
-  <div class="last-updated">Last updated May 15, 2026</div>
+  <div class="last-updated" id="last-updated"></div>
 </footer>
 
 <div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded project figure">
@@ -1085,6 +1085,11 @@
 </div>
 
 <script>
+  const d = new Date(document.lastModified);
+  const dateStr = 'Updated ' + d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  document.getElementById('last-updated').textContent = dateStr;
+  document.getElementById('last-updated-photo').textContent = dateStr;
+
   const imageModal = document.getElementById('image-modal');
   const modalImage = document.getElementById('modal-image');
   const modalCaption = document.getElementById('modal-caption');
