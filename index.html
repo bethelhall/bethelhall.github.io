@@ -14,7 +14,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -123,6 +123,13 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .profile-updated {
+      margin: -0.75rem 0 0.9rem;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
     }
 
     .profile img {
@@ -774,7 +781,7 @@
     <div class="intro">
 
       <div class="profile">
-        <div id="last-updated-photo" style="margin-bottom: 0.9rem; margin-top: -0.75rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--muted);"></div>
+        <div class="profile-updated" id="last-updated-photo"></div>
         <img src="images/beth.jpg" alt="Bethel Hall" />
       </div>
 
@@ -790,13 +797,13 @@
           I'm a Ph.D. student in Computer Science at
           <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
           advised by <a href="https://www.stevens.edu/profile/weiers">Prof. William Eiers</a>.
-          My research centers on improving the reliability of large language models through neurosymbolic methods, with a focus on building systems that provide hard correctness guarantees on their outputs. My work explores how to bring these guarantees to high-stakes domains where LLMs are increasingly deployed, such as finance, healthcare, and cloud infrastructure.
+          My research improves the reliability of large language models with neurosymbolic methods, focusing on systems that can provide hard correctness guarantees. I study how to bring these guarantees to high-stakes domains where LLMs are increasingly deployed, including finance, healthcare, and cloud infrastructure.
         </p>
         <p>
           Outside research, I enjoy biking, hiking, and running.
         </p>
 
-        <nav class="contact" id="contact" aria-label="Contact and profile links">
+        <nav class="contact" id="profile-links" aria-label="Contact and profile links">
           <a href="mailto:bhall2@stevens.edu" aria-label="Email Bethel Hall">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M4 6h16v12H4z" />
@@ -804,7 +811,7 @@
             </svg>
             <span>Email</span>
           </a>
-          <a href="data/CV-BethelHall.pdf" aria-label="Download CV">
+          <a href="data/Resume-BHall.pdf" aria-label="Download CV">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 3h7l5 5v13H7z" />
               <path d="M14 3v5h5" />
@@ -893,7 +900,7 @@
       <article class="project">
         <h3>VERIMED</h3>
         <p>
-          VERIMED is an auditing pipeline for natural-language software requirements. Before a requirement becomes a formal model or an implementation, VERIMED checks it for ambiguity, inconsistency, vacuousness, redundancy, and safety violations — producing solver-based evidence rather than subjective review. Software engineers get concrete counterexamples showing where a requirement can be read in more than one way. Verification engineers get SMT diagnostics including unsat cores, violating assignments, and redundancy flags. Safety reviewers get a global consistency check across the full requirement set.
+          VERIMED audits natural-language software requirements before they become formal models or implementations. It checks for ambiguity, inconsistency, vacuousness, redundancy, and safety violations, producing solver-backed evidence instead of subjective review.
         </p>
         <div class="project-tags">
           <span>Natural-language requirements</span>
@@ -947,7 +954,7 @@
       <article class="project">
         <h3>CloudFix</h3>
         <p>
-          CloudFix is an LLM-assisted repair workflow for AWS IAM access-control policies. When a policy fails to satisfy its intended access specification, CloudFix uses SMT-based fault localization to identify the specific statement causing the violation, generates a targeted repair with an LLM, and verifies the patch formally before accepting it. The goal is to make policy validation, maintenance, and correction tractable at scale — replacing manual debugging with a structured, auditable repair loop.
+          CloudFix repairs AWS IAM access-control policies with a verified LLM workflow. It localizes the faulty policy statement with SMT, asks an LLM for a targeted patch, and formally checks the result before accepting it.
         </p>
         <div class="project-tags">
           <span>AWS IAM</span>
@@ -1002,7 +1009,7 @@
       <article class="project">
         <h3>POLICYSUMMARIZER</h3>
         <p>
-          POLICYSUMMARIZER answers the question manual review cannot: what requests does this policy actually allow? Given an AWS, Azure, or GCP access-control policy, it encodes the policy into a finite-state automaton that precisely captures the set of allowed requests, extracts a regular expression from that automaton, and uses an LLM to simplify it into a human-readable characterization. Model counting verifies the simplified summary against the formal representation before accepting it, falling back to the automata-derived expression if fidelity drops below a configurable threshold. A second mode characterizes the semantic difference between two policies — surfacing exactly which requests one allows that the other does not, which raw JSON comparison cannot provide. This work also establishes the Verifiable Synthesis Paradox: LLMs produce fluent policy explanations yet fail to reconstruct semantically equivalent policies even when given their own explanations as input, motivating the neurosymbolic architecture.
+          POLICYSUMMARIZER characterizes what cloud access-control policies actually allow. It converts AWS, Azure, or GCP policies into automata, simplifies the result with an LLM, and verifies the summary against the formal representation before accepting it.
         </p>
         <div class="project-tags">
           <span>LLM evaluation</span>
