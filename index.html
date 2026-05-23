@@ -279,14 +279,15 @@
     }
 
     .update-list {
-      border-left: 2px solid var(--border);
-      padding-left: 1.5rem;
       margin-top: 0.25rem;
+      margin-left: 0.15rem;
+      padding-left: 1.35rem;
+      border-left: 1px solid #d5e9f4;
     }
 
     .update-list li {
       position: relative;
-      padding: 0.55rem 0;
+      padding: 0.62rem 0;
       font-size: 1rem;
       color: var(--text);
     }
@@ -294,14 +295,14 @@
     .update-list li::before {
       content: '';
       position: absolute;
-      left: -1.59rem;
-      top: 1.05rem;
-      width: 0.55rem;
-      height: 0.55rem;
+      left: calc(-1.35rem - 0.28rem);
+      top: 1.08rem;
+      width: 0.44rem;
+      height: 0.44rem;
+      border: 2px solid #ffffff;
       border-radius: 50%;
-      background: #ffffff;
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 0 3px #f0f8fd;
+      background: var(--accent);
+      box-shadow: 0 0 0 1px #9fd7f1;
     }
 
     .update-list .year-sep {
@@ -313,8 +314,13 @@
       font-weight: 600;
       color: var(--accent);
       letter-spacing: 0.08em;
-      padding: 1.1rem 0 0.3rem;
+      margin-top: 1rem;
+      padding: 0.45rem 0 0.2rem;
       pointer-events: none;
+    }
+
+    .update-list .year-sep:first-child {
+      margin-top: 0;
     }
 
     .update-list .year-sep::after {
@@ -326,6 +332,13 @@
 
     .update-list .year-sep::before {
       display: none;
+    }
+
+    .update-list .date {
+      display: inline-block;
+      min-width: 5.2rem;
+      margin-right: 0.5rem;
+      color: var(--accent-dark);
     }
 
     .project-list {
