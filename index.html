@@ -287,8 +287,13 @@
 
     .update-list li {
       position: relative;
-      padding: 0.62rem 0;
-      font-size: 1rem;
+      display: grid;
+      grid-template-columns: 5.8rem minmax(0, 1fr);
+      column-gap: 0.85rem;
+      align-items: baseline;
+      padding: 0.68rem 0;
+      font-size: 0.98rem;
+      line-height: 1.55;
       color: var(--text);
     }
 
@@ -336,9 +341,11 @@
 
     .update-list .date {
       display: inline-block;
-      min-width: 5.2rem;
-      margin-right: 0.5rem;
-      color: var(--accent-dark);
+      color: #3c7189;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
     }
 
     .project-list {
