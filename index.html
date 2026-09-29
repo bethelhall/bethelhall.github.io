@@ -20,6 +20,33 @@
   <meta name="twitter:image" content="https://bethelhall.tech/images/beth.jpg" />
   <meta name="twitter:image:alt" content="Bethel Hall" />
 
+  <script>
+    (() => {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+      let preference = null;
+      try { preference = localStorage.getItem('theme'); } catch (_) {}
+      if (preference !== 'light' && preference !== 'dark') preference = null;
+      const applyTheme = () => {
+        const dark = preference ? preference === 'dark' : systemTheme.matches;
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        const toggle = document.getElementById('theme-toggle');
+        if (toggle) toggle.setAttribute('aria-pressed', String(dark));
+      };
+      applyTheme();
+      systemTheme.addEventListener('change', applyTheme);
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('theme-toggle');
+        toggle.hidden = false;
+        applyTheme();
+        toggle.addEventListener('click', () => {
+          preference = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+          try { localStorage.setItem('theme', preference); } catch (_) {}
+          applyTheme();
+        });
+      });
+    })();
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,12 +54,53 @@
 
   <style>
     :root {
+      color-scheme: light;
       --bg: #ffffff;
       --text: #171717;
       --muted: #4a4a4a;
       --border: #e3e0da;
       --accent: #0077b6;
       --accent-dark: #005f8f;
+      --surface: #ffffff;
+      --tint: #f4fbff;
+      --soft: #f7fbfd;
+      --hover: #f3fbff;
+      --highlight-border: #9fd7f1;
+      --badge-text: #ffffff;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #111820;
+      --text: #e7edf3;
+      --muted: #b0becb;
+      --border: #344452;
+      --accent: #73c9f5;
+      --accent-dark: #ade2ff;
+      --surface: #19232d;
+      --tint: #172c3c;
+      --soft: #1c2d3b;
+      --hover: #243b4c;
+      --highlight-border: #497b99;
+      --badge-text: #111820;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+      color-scheme: dark;
+      --bg: #111820;
+      --text: #e7edf3;
+      --muted: #b0becb;
+      --border: #344452;
+      --accent: #73c9f5;
+      --accent-dark: #ade2ff;
+      --surface: #19232d;
+      --tint: #172c3c;
+      --soft: #1c2d3b;
+      --hover: #243b4c;
+      --highlight-border: #497b99;
+      --badge-text: #111820;
+      }
     }
 
     html {
@@ -44,7 +112,7 @@
       margin: 0;
       font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background:
-        linear-gradient(180deg, #f4fbff 0, #ffffff 420px),
+        linear-gradient(180deg, var(--tint) 0, var(--bg) 420px),
         var(--bg);
       color: var(--text);
       line-height: 1.65;
@@ -131,6 +199,29 @@
       flex-wrap: wrap;
       justify-content: flex-end;
       gap: 0.9rem;
+    }
+
+    .site-links { align-items: center; }
+
+    .theme-toggle {
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--hover);
+      border-color: var(--highlight-border);
+    }
+
+    .theme-toggle[aria-pressed="true"] {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .site-links a {
@@ -226,7 +317,7 @@
       padding: 0.34rem 0.55rem;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
+      background: var(--surface);
       color: var(--text);
       font-weight: 500;
       line-height: 1;
@@ -235,8 +326,8 @@
     }
 
     .contact a:hover {
-      border-color: #9fd7f1;
-      background: #f3fbff;
+      border-color: var(--highlight-border);
+      background: var(--hover);
       color: var(--accent);
     }
 
@@ -288,7 +379,7 @@
       margin-top: 0.25rem;
       margin-left: 0.15rem;
       padding-left: 1.35rem;
-      border-left: 1px solid #d5e9f4;
+      border-left: 1px solid var(--border);
     }
 
     .update-list li {
@@ -305,10 +396,10 @@
       top: 1.08rem;
       width: 0.44rem;
       height: 0.44rem;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--bg);
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 1px #9fd7f1;
+      box-shadow: 0 0 0 1px var(--highlight-border);
     }
 
     .update-list .year-sep {
@@ -360,12 +451,12 @@
       padding: clamp(1rem, 2.8vw, 2rem);
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: #ffffff;
+      background: var(--surface);
       transition: border-color 160ms ease, box-shadow 160ms ease;
     }
 
     .project:hover {
-      border-color: #9fd7f1;
+      border-color: var(--highlight-border);
       box-shadow: 0 6px 24px rgba(0, 119, 182, 0.07);
     }
 
@@ -401,7 +492,7 @@
 
     .project-links a {
       font-weight: 500;
-      text-decoration-color: #9fd7f1;
+      text-decoration-color: var(--highlight-border);
     }
 
     .project .project-result {
@@ -410,7 +501,7 @@
       padding: 0.75rem 1rem;
       border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
-      background: #f7fbfd;
+      background: var(--soft);
       color: var(--text);
       font-size: 0.95rem;
       line-height: 1.5;
@@ -468,13 +559,13 @@
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: 8px;
-      background: #ffffff;
+      background: var(--surface);
       transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
     }
 
     .figure-panel:hover,
     .figure-panel:focus-within {
-      border-color: #9fd7f1;
+      border-color: var(--highlight-border);
       box-shadow: 0 14px 30px rgba(0, 119, 182, 0.12);
       transform: translateY(-1px);
     }
@@ -484,7 +575,7 @@
       width: 100%;
       padding: 0;
       border: 0;
-      background: #ffffff;
+      background: var(--surface);
       font: inherit;
       text-align: left;
       cursor: zoom-in;
@@ -513,9 +604,9 @@
       justify-content: center;
       width: 1.6rem;
       height: 1.6rem;
-      border: 1px solid #b8e4f6;
+      border: 1px solid var(--highlight-border);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.94);
+      background: var(--surface);
       color: var(--accent);
       pointer-events: none;
       transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
@@ -531,7 +622,7 @@
     .figure-panel button:focus-visible .zoom-indicator {
       border-color: var(--accent);
       background: var(--accent);
-      color: #ffffff;
+      color: var(--badge-text);
       transform: scale(1.04);
     }
 
@@ -604,7 +695,7 @@
       place-items: center;
       border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 999px;
-      background: #ffffff;
+      background: var(--surface);
       color: var(--text);
       cursor: pointer;
       font-size: 1.2rem;
@@ -666,7 +757,7 @@
       padding: 0.15rem 0.5rem;
       border-radius: 999px;
       background: var(--accent);
-      color: #ffffff;
+      color: var(--badge-text);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.03em;
@@ -810,6 +901,7 @@
       <a href="#teaching">Teaching</a>
       <a href="#service">Service</a>
       <a href="mailto:bhall2@stevens.edu">Contact</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" hidden>Dark mode</button>
     </div>
   </nav>
 
