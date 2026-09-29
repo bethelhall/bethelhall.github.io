@@ -716,8 +716,9 @@
     }
 
     .pub {
-      padding: 1.25rem 0;
+      padding: 1rem 0;
       border-top: 1px solid var(--border);
+      line-height: 1.45;
     }
 
     .pub:first-of-type {
@@ -725,53 +726,49 @@
       border-top: 0;
     }
 
+    .pub-label {
+      margin-bottom: 0.2rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
     .pub h3 {
-      font-family: 'IBM Plex Sans', system-ui, sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     .pub-title {
-      color: var(--accent);
+      color: var(--text);
       text-decoration: none;
     }
 
-    .pub-title:hover { text-decoration: underline; }
+    .pub-title:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
 
     .pub-authors {
-      margin-top: 0.3rem;
-      font-size: 1rem;
+      margin-top: 0.2rem;
+      font-size: 0.92rem;
     }
 
     .pub-venue {
-      margin-top: 0.15rem;
-      font-size: 0.88rem;
-      font-family: 'IBM Plex Mono', monospace;
+      display: inline;
+      font-size: 0.85rem;
       color: var(--muted);
     }
 
     .pub-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 0.35rem;
-      font-size: 0.92rem;
+      display: inline;
+      margin-left: 0.6rem;
+      font-size: 0.85rem;
     }
 
-    .pub-badge {
+    .pub-links a {
       display: inline-block;
-      margin-left: 0.5rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--badge-text);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      vertical-align: middle;
-      position: relative;
-      top: -0.1rem;
+      margin-right: 0.5rem;
     }
 
     .date {
@@ -990,26 +987,28 @@
     <h2>Publications</h2>
 
     <div class="pub">
+      <div class="pub-label">Preprint 2026</div>
       <h3>
         <a class="pub-title" href="https://arxiv.org/abs/2608.10213">
           VeriFin: A Neurosymbolic Framework for Verifying LLM-Generated Financial Claims
         </a>
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Sachi Shome, William Eiers</div>
-      <div class="pub-venue">Preprint, arXiv:2608.10213</div>
+      <div class="pub-venue"><em>arXiv preprint arXiv:2608.10213</em>, 2026</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2608.10213">Paper</a>
       </div>
     </div>
 
     <div class="pub">
+      <div class="pub-label">Preprint 2026</div>
       <h3>
         <a class="pub-title" href="https://arxiv.org/abs/2605.13817">
           Neurosymbolic Auditing of Natural-Language Software Requirements
         </a>
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, William Eiers</div>
-      <div class="pub-venue">Preprint, arXiv:2605.13817</div>
+      <div class="pub-venue"><em>arXiv preprint arXiv:2605.13817</em>, 2026</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2605.13817">Paper</a>
         <a href="#verimed">Project</a>
@@ -1017,13 +1016,14 @@
     </div>
 
     <div class="pub">
+      <div class="pub-label">SANER 2026</div>
       <h3>
         <a class="pub-title" href="https://arxiv.org/abs/2512.09957">
           CloudFix: Automated Policy Repair for Cloud Access Control Policies Using Large Language Models
-        </a><span class="pub-badge">SANER 2026</span>
+        </a>
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Ungaro, William Eiers</div>
-      <div class="pub-venue" style="color: var(--accent); font-weight: 600;">SANER 2026 (Research Track)</div>
+      <div class="pub-venue"><em>SANER (Research Track)</em>, 2026</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2512.09957">Paper</a>
         <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
@@ -1032,13 +1032,14 @@
     </div>
 
     <div class="pub">
+      <div class="pub-label">ISSRE 2026</div>
       <h3>
         <a class="pub-title" href="https://arxiv.org/abs/2510.20692">
           Neurosymbolic Characterization for Reliable Access Control Policy Analysis
-        </a><span class="pub-badge">ISSRE 2026</span>
+        </a>
       </h3>
       <div class="pub-authors">Adarsh Vatsa, <strong>Bethel Hall</strong>, William Eiers</div>
-      <div class="pub-venue">ISSRE 2026</div>
+      <div class="pub-venue"><em>ISSRE</em>, 2026</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2510.20692">Paper</a>
         <a href="https://policysummarizer.xyz/">Tool</a>
