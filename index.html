@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <title>Bethel Hall</title>
-  <link rel="icon" type="image/x-icon" href="images/beth.jpg">
+  <link rel="icon" type="image/jpeg" href="images/beth.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Bethel Hall is a Ph.D. student in Computer Science at Stevens Institute of Technology working on LLM reliability, cloud security, and automated reasoning using formal methods." />
   <link rel="canonical" href="https://bethelhall.tech/" />
   <meta property="og:title" content="Bethel Hall" />
   <meta property="og:site_name" content="Bethel Hall" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bethelhall.tech/" />
+  <meta property="og:description" content="I build neurosymbolic systems that make LLM outputs more reliable and verifiable. Explore my research, publications, and projects." />
+  <meta property="og:image" content="https://bethelhall.tech/images/beth.jpg" />
+  <meta property="og:image:alt" content="Bethel Hall" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Bethel Hall" />
+  <meta name="twitter:description" content="Research on reliable LLMs, neurosymbolic methods, and formal verification." />
+  <meta name="twitter:image" content="https://bethelhall.tech/images/beth.jpg" />
+  <meta name="twitter:image:alt" content="Bethel Hall" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +62,32 @@
       color: var(--accent-dark);
     }
 
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0.75rem;
+      left: 1rem;
+      z-index: 10;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--bg);
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    section,
+    article {
+      scroll-margin-top: 1.5rem;
+    }
+
     h1, h2, h3 {
       font-family: 'IBM Plex Sans', system-ui, sans-serif;
       font-weight: 600;
@@ -66,10 +101,10 @@
     }
 
     .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
+  width: min(100% - 2.5rem, 940px);
+  margin: 0 auto;
+  padding: 0 0 3rem;
+}
 
     .site-nav {
       display: flex;
@@ -112,24 +147,18 @@
       border-bottom: 1px solid var(--border);
     }
 
+  
     .intro {
-      display: grid;
-      grid-template-columns: 240px minmax(0, 1fr);
-      gap: 3rem;
-      align-items: start;
-    }
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
 
     .profile {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-    }
-
-    .profile-updated {
-      margin: -0.75rem 0 0.9rem;
-      color: var(--muted);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.82rem;
     }
 
     .profile img {
@@ -320,7 +349,7 @@
 
     .project-list {
       display: grid;
-      gap: 1.5rem;
+      gap: clamp(1.25rem, 3vw, 2rem);
     }
 
     .project {
@@ -328,7 +357,7 @@
       grid-template-columns: minmax(0, 1fr);
       gap: 0;
       align-items: start;
-      padding: 1.75rem 1.75rem 1.5rem;
+      padding: clamp(1rem, 2.8vw, 2rem);
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #fafafa;
@@ -340,11 +369,6 @@
       box-shadow: 0 6px 24px rgba(0, 119, 182, 0.07);
     }
 
-    .project:first-child {
-      padding-top: 1.75rem;
-      border-top: 1px solid var(--border);
-    }
-
     .project h3 {
       font-family: 'IBM Plex Sans', system-ui, sans-serif;
       font-size: 1.3rem;
@@ -354,8 +378,7 @@
 
     .project h3,
     .project p,
-    .project-tags,
-    .project-stats,
+    .project-details,
     .project-links {
       grid-column: 1;
     }
@@ -381,52 +404,62 @@
       text-decoration-color: #9fd7f1;
     }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.7rem;
-    }
-
-    .project-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 0.85rem;
-    }
-
-    .project-tags span {
-      padding: 0.16rem 0.45rem;
-      border: 1px solid #c8e8f8;
-      border-radius: 999px;
-      background: #f3fbff;
-      color: var(--accent-dark);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .project-stats span {
-      display: block;
-      padding: 0.5rem 0.75rem;
+    .project .project-result {
+      max-width: none;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
       border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
       background: #f7fbfd;
       color: var(--text);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 400;
+      font-size: 0.95rem;
       line-height: 1.5;
+    }
+
+    .project-result strong {
+      color: var(--accent-dark);
+    }
+
+    .project-details {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .project-details summary {
+      width: fit-content;
+      padding: 0.25rem 0;
+      color: var(--accent-dark);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .project-details p {
+      margin-top: 0.75rem;
+      font-size: inherit;
+    }
+
+    .project-details ul {
+      max-width: 720px;
+      margin: 0.75rem 0 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .project-details li + li {
+      margin-top: 0.35rem;
     }
 
     .project-figure {
       grid-column: 1;
-      margin: 1rem 0 0;
+      margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
     }
 
     .figure-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.65rem;
+      gap: clamp(0.85rem, 1.5vw, 1.25rem);
     }
 
     .figure-panel {
@@ -447,17 +480,18 @@
     }
 
     .figure-panel button {
-      position: relative;
       display: block;
       width: 100%;
       padding: 0;
       border: 0;
       background: #ffffff;
+      font: inherit;
+      text-align: left;
       cursor: zoom-in;
     }
 
     .figure-panel button:focus-visible {
-      outline: 3px solid #9fd7f1;
+      outline: 3px solid var(--accent);
       outline-offset: -3px;
     }
 
@@ -473,25 +507,16 @@
       transition: transform 160ms ease;
     }
 
-    .figure-panel button:hover img,
-    .figure-panel button:focus-visible img {
-      transform: scale(1.015);
-    }
-
     .zoom-indicator {
-      position: absolute;
-      top: 0.6rem;
-      right: 0.6rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2rem;
-      height: 2rem;
+      width: 1.6rem;
+      height: 1.6rem;
       border: 1px solid #b8e4f6;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.94);
       color: var(--accent);
-      box-shadow: 0 8px 20px rgba(10, 18, 24, 0.12);
       pointer-events: none;
       transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
     }
@@ -511,8 +536,11 @@
     }
 
     .figure-label {
-      display: block;
-      padding: 0.42rem 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.4rem 0.75rem;
       border-top: 1px solid var(--border);
       color: var(--accent-dark);
       font-family: 'IBM Plex Mono', monospace;
@@ -524,37 +552,37 @@
     }
 
     figcaption {
-      margin-top: 0.4rem;
+      max-width: 90ch;
+      margin-top: 0.85rem;
       color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.45;
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
     .image-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      background: rgba(10, 18, 24, 0.82);
+      width: min(1280px, calc(100% - 2rem));
+      max-width: none;
+      max-height: calc(100dvh - 2rem);
+      margin: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #ffffff;
     }
 
-    .image-modal.is-open {
-      display: flex;
+    .image-modal::backdrop {
+      background: rgba(10, 18, 24, 0.88);
     }
 
     .modal-content {
-      position: relative;
-      width: min(96vw, 1280px);
-      max-height: 92vh;
+      display: grid;
+      gap: 0.75rem;
     }
 
     .modal-content img {
       display: block;
       width: 100%;
-      max-height: 86vh;
+      max-height: calc(100dvh - 10rem);
       object-fit: contain;
       border-radius: 8px;
       background: #ffffff;
@@ -562,19 +590,17 @@
     }
 
     .modal-caption {
-      margin-top: 0.65rem;
+      margin: 0;
       color: #ffffff;
       font-size: 0.9rem;
       text-align: center;
     }
 
     .modal-close {
-      position: absolute;
-      right: -0.6rem;
-      top: -0.6rem;
+      justify-self: end;
       display: grid;
-      width: 2.1rem;
-      height: 2.1rem;
+      width: 2.6rem;
+      height: 2.6rem;
       place-items: center;
       border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 999px;
@@ -627,6 +653,9 @@
     }
 
     .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
       margin-top: 0.35rem;
       font-size: 0.92rem;
     }
@@ -666,11 +695,33 @@
       font-size: 0.82rem;
     }
 
-    @media (max-width: 720px) {
-      .container {
-        padding-inline: 1.1rem;
+    @media (max-width: 960px) {
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
 
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+
+      .figure-panel:hover,
+      .figure-panel:focus-within,
+      .figure-panel button:hover .zoom-indicator,
+      .figure-panel button:focus-visible .zoom-indicator {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 720px) {
       .site-nav {
         align-items: flex-start;
         flex-direction: column;
@@ -703,14 +754,6 @@
       }
 
       .project {
-        grid-template-columns: 1fr;
-      }
-
-      .project-figure {
-        margin-top: 0.8rem;
-      }
-
-      .figure-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -756,6 +799,7 @@
 
 <body>
 
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div class="container">
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="site-mark" href="#about">Bethel Hall</a>
@@ -763,6 +807,7 @@
       <a href="#publications">Publications</a>
       <a href="#projects">Projects</a>
       <a href="#updates">News</a>
+      <a href="#teaching">Teaching</a>
       <a href="#service">Service</a>
       <a href="mailto:bhall2@stevens.edu">Contact</a>
     </div>
@@ -772,22 +817,19 @@
     <div class="intro">
 
       <div class="profile">
-        <div class="profile-updated" id="last-updated-photo"></div>
-        <img src="images/beth.jpg" alt="Bethel Hall" />
+        <img src="images/beth.jpg" alt="Bethel Hall" width="220" height="220" />
       </div>
 
       <div class="intro-copy">
         <h1>
           Bethel Hall
-          <span>(ቤቴል ሆል)</span>
+          <span lang="am">(ቤቴል ሆል)</span>
         </h1>
-        <div class="role">Ph.D. student in Computer Science · Stevens Institute of Technology </div>
-        <div class="manifesto">Current AI agents are powerful but fundamentally unverifiable. My work focuses on making them reliable for high-stakes domains.</div>
+        <div class="role">Ph.D. student in Computer Science · <a href="https://www.stevens.edu">Stevens Institute of Technology</a></div>
+        <div class="manifesto">I build neurosymbolic systems that make LLM outputs more reliable and verifiable.</div>
         <p>
-          I'm a Ph.D. student in Computer Science at
-          <a href="https://www.stevens.edu">Stevens Institute of Technology</a>,
-          advised by <a href="https://www.stevens.edu/profile/weiers">Prof. William Eiers</a>.
-          My research improves the reliability of large language models with neurosymbolic methods, focusing on systems that can provide hard correctness guarantees. I study how to bring these guarantees to high-stakes domains where LLMs are increasingly deployed, including finance, healthcare, and cloud infrastructure.
+          Advised by <a href="https://www.stevens.edu/profile/weiers">Prof. William Eiers</a>,
+          I combine LLMs with formal methods to audit software requirements and analyze cloud access-control policies, with broader interests in finance and healthcare.
         </p>
         <p>
           Outside of research, I enjoy biking, hiking, and running.
@@ -801,7 +843,7 @@
             </svg>
             <span>Email</span>
           </a>
-          <a href="data/resume_bethel.pdf" aria-label="Download CV">
+          <a href="data/resume.pdf" aria-label="Download CV">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 3h7l5 5v13H7z" />
               <path d="M14 3v5h5" />
@@ -843,7 +885,8 @@
 
   </header>
 
-<section id="publications">
+  <main id="main-content" tabindex="-1">
+  <section id="publications">
     <h2>Publications</h2>
 
     <div class="pub">
@@ -854,7 +897,10 @@
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, William Eiers</div>
       <div class="pub-venue">Preprint, arXiv:2605.13817</div>
-      <div class="pub-links">We show that disagreements between independently-generated LLM formalizations of the same requirement reliably signal latent ambiguity, and that SMT-generated counterexamples can localize and repair it.</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2605.13817">Paper</a>
+        <a href="#verimed">Project</a>
+      </div>
     </div>
 
     <div class="pub">
@@ -865,21 +911,26 @@
       </h3>
       <div class="pub-authors"><strong>Bethel Hall</strong>, Owen Ungaro, William Eiers</div>
       <div class="pub-venue" style="color: var(--accent); font-weight: 600;">SANER 2026 (Research Track)</div>
-      <div class="pub-links">We show that SMT-based fault localization, which pinpoints the exact policy statement at fault before invoking the LLM, more than doubles repair rates over LLM-only baselines on real-world AWS policies.</div>
       <div class="pub-links">
+        <a href="https://arxiv.org/abs/2512.09957">Paper</a>
         <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
+        <a href="#cloudfix">Project</a>
       </div>
     </div>
 
     <div class="pub">
       <h3>
-        <a class="pub-title" href="https://arxiv.org/pdf/2510.20692">
-          Exploring Large Language Models for Access Control Policy Synthesis and Summarization
-        </a>
+        <a class="pub-title" href="https://arxiv.org/abs/2510.20692">
+          Neurosymbolic Characterization for Reliable Access Control Policy Analysis
+        </a><span class="pub-badge">ISSRE 2026</span>
       </h3>
       <div class="pub-authors">Adarsh Vatsa, <strong>Bethel Hall</strong>, William Eiers</div>
-      <div class="pub-venue">Preprint, arXiv:2510.20692</div>
-      <div class="pub-links">We show that LLMs fail to reason about policy semantics with reliability-grade precision, even when given their own explanations as input, and that pairing automata-derived characterizations with LLM simplification resolves this gap.</div>
+      <div class="pub-venue">ISSRE 2026</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2510.20692">Paper</a>
+        <a href="https://policysummarizer.xyz/">Tool</a>
+        <a href="#policysummarizer">Project</a>
+      </div>
     </div>
 
   </section>
@@ -887,76 +938,65 @@
   <section id="projects">
     <h2>Projects</h2>
     <div class="project-list">
-      <article class="project">
+      <article class="project" id="verimed">
         <h3>VERIMED</h3>
-        <p>
-          VERIMED audits natural-language software requirements before they become formal models or implementations. It checks for ambiguity, inconsistency, vacuousness, redundancy, and safety violations, producing solver-backed evidence instead of subjective review.
-        </p>
-        <div class="project-tags">
-          <span>Natural-language requirements</span>
-          <span>SMT</span>
-          <span>Z3</span>
-          <span>Counterexample-guided repair</span>
-        </div>
-        <div class="project-stats">
-          <span>100% formalization rate — 64/64 requirements converted without manual intervention</span>
-          <span>QA accuracy lifted from 55.4% to 98.5% using SMT counterexample feedback (ABZ hemodialysis benchmark, n=64)</span>
-          <span>Caught 12 latent ambiguities in real hemodialysis machine specifications</span>
-        </div>
+        <p>Audits software requirements using independent LLM formalizations and SMT counterexamples to identify ambiguity and guide clarification.</p>
+        <p class="project-result"><strong>55.4% to 98.5% verified QA accuracy</strong> with SMT feedback across 65 hemodialysis safety questions.</p>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2605.13817">Paper</a>
         </div>
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_verimed.png" data-caption="VERIMED method overview" aria-label="Open VERIMED method figure" title="Open larger view">
-                <img src="images/web_fig/method_verimed.png" alt="VERIMED method overview">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/method_verimed.png" data-caption="VERIMED: method" aria-label="Enlarge VERIMED method figure" aria-haspopup="dialog">
+                <img src="images/web_fig/thumbs/method_verimed.webp" width="1200" height="509" loading="lazy" decoding="async" alt="VERIMED workflow: sample formal encodings, detect disagreements with SMT, refine requirements, verify properties, and answer queries.">
+                <span class="figure-label">
+                  <span>Method</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/verimed_res.png" data-caption="VERIMED experimental results" aria-label="Open VERIMED results figure" title="Open larger view">
-                <img src="images/web_fig/verimed_res.png" alt="VERIMED experimental results">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/verimed_res.png" data-caption="VERIMED: results" aria-label="Enlarge VERIMED results figure" aria-haspopup="dialog">
+                <img src="images/web_fig/thumbs/verimed_res.webp" width="1200" height="401" loading="lazy" decoding="async" alt="SMT-verified answers increase from 36 of 65 safety questions before repair to 64 of 65 with counterexample-guided repair.">
+                <span class="figure-label">
+                  <span>Results</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>Key insight: ambiguity in a requirement causes independent LLMs to produce contradictory formalizations — a disagreement SMT can detect and localize with a concrete counterexample.</figcaption>
+          <figcaption>SMT counterexamples expose disagreements between independent formalizations and guide requirement clarification.</figcaption>
         </figure>
+        <details class="project-details">
+          <summary>Method and supporting results</summary>
+          <p>Generates formal encodings of natural-language requirements, checks for disagreements, and uses counterexamples to refine the requirements and answer safety questions.</p>
+          <ul>
+            <li>Formalized all 64 requirements in the ABZ hemodialysis benchmark.</li>
+            <li>Clarification brought 12 flagged requirements into agreement across the sampled encodings.</li>
+            <li>Verification is relative to the generated formal model; it does not prove complete faithfulness to human intent.</li>
+          </ul>
+        </details>
       </article>
 
-      <article class="project">
+      <article class="project" id="cloudfix">
         <h3>CloudFix</h3>
-        <p>
-          CloudFix repairs AWS IAM access-control policies with a verified LLM workflow. It localizes the faulty policy statement with SMT, asks an LLM for a targeted patch, and formally checks the result before accepting it.
-        </p>
-        <div class="project-tags">
-          <span>AWS IAM</span>
-          <span>Policy repair</span>
-          <span>Fault localization</span>
-          <span>Quacky + Z3</span>
-        </div>
-        <div class="project-stats">
-          <span>Evaluated on 282 real-world AWS IAM policies</span>
-          <span>84.0% repair rate vs. 48.2% baseline — a 36-point improvement on 10-request tasks</span>
-          <span>54.3% vs. 22.3% baseline on harder 30-request tasks — more than double the baseline</span>
-        </div>
+        <p>Repairs AWS access-control policies by combining SMT fault localization, targeted LLM edits, and checks against supplied request specifications.</p>
+        <p class="project-result"><strong>84.0% full repair versus 48.2% for the baseline</strong> across 282 AWS policies with 10 request specifications per policy.</p>
         <div class="project-links">
           <a href="https://arxiv.org/abs/2512.09957">Paper</a>
           <a href="https://github.com/bethelhall/fixmypolicy">Code</a>
@@ -964,91 +1004,104 @@
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_cloudfix.jpg" data-caption="CloudFix repair method overview" aria-label="Open CloudFix method figure" title="Open larger view">
-                <img src="images/web_fig/method_cloudfix.jpg" alt="CloudFix repair method overview">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/method_cloudfix.jpg" data-caption="CloudFix: method" aria-label="Enlarge CloudFix method figure" aria-haspopup="dialog">
+                <img src="images/web_fig/thumbs/method_cloudfix.webp" width="1200" height="552" loading="lazy" decoding="async" alt="CloudFix loop: check a policy against request specifications, localize faults, generate an LLM repair, and check the revised policy.">
+                <span class="figure-label">
+                  <span>Method</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/cloudfix_res.png" data-caption="CloudFix experimental results" aria-label="Open CloudFix results figure" title="Open larger view">
-                <img src="images/web_fig/cloudfix_res.png" alt="CloudFix experimental results">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/cloudfix_repair_rates.svg" data-caption="CloudFix: results" aria-label="Enlarge CloudFix results figure" aria-haspopup="dialog">
+                <img src="images/web_fig/cloudfix_repair_rates.svg" width="1200" height="600" loading="lazy" decoding="async" alt="Complete repair rates for baseline versus CloudFix: 48.2% versus 84.0% with 10 requests; 52.8% versus 60.3% with 20; 22.3% versus 54.3% with 30; 0.0% versus 2.5% with 50. Each experiment uses 282 AWS policies.">
+                <span class="figure-label">
+                  <span>Results</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>Key insight: SMT fault localization identifies which specific policy statement is wrong before the LLM is asked to repair it, dramatically narrowing the repair search space.</figcaption>
+          <figcaption>Fault localization narrows the edit scope before the LLM proposes a repair. The chart shows complete repair rates from <a href="https://arxiv.org/html/2512.09957v2#S5.T3">Table III</a>.</figcaption>
         </figure>
+        <details class="project-details">
+          <summary>Method and supporting results</summary>
+          <p>Uses Quacky and Z3 to identify candidate faulty policy statements, asks an LLM for targeted edits, and checks each repaired policy against the request specifications.</p>
+          <ul>
+            <li>With 30 request specifications, full repair was 54.3% versus 22.3% for the baseline, more than twice the baseline rate.</li>
+            <li>Full repair means satisfying every supplied request specification, not every possible request.</li>
+          </ul>
+        </details>
       </article>
 
-      <article class="project">
-        <h3>POLICYSUMMARIZER</h3>
-        <p>
-          POLICYSUMMARIZER characterizes what cloud access-control policies actually allow. It converts AWS, Azure, or GCP policies into automata, simplifies the result with an LLM, and verifies the summary against the formal representation before accepting it.
-        </p>
-        <div class="project-tags">
-          <span>LLM evaluation</span>
-          <span>Neurosymbolic AI</span>
-          <span>Regex simplification</span>
-          <span>Human-AI collaboration</span>
-        </div>
-        <div class="project-stats">
-          <span>Non-reasoning LLMs top out at 45.8% semantic equivalence, highlighting deployment reliability limits</span>
-          <span>Reasoning LLMs reach 86.4%–93.7% — highlighting the gap between model classes</span>
-          <span>Formal summarizer achieves 0.889 mean similarity on semantic request descriptions</span>
-        </div>
+      <article class="project" id="policysummarizer">
+        <h3>PolicySummarizer</h3>
+        <p>Builds compact descriptions of cloud-policy permissions using automata, LLM-assisted regex simplification, and model-counting checks.</p>
+        <p class="project-result"><strong>0.93 mean Jaccard similarity</strong> for resource characterizations across 746 AWS, Azure, and Google Cloud policies.</p>
         <div class="project-links">
-          <a href="https://arxiv.org/pdf/2510.20692">Paper</a>
+          <a href="https://arxiv.org/abs/2510.20692v3">Paper</a>
           <a href="https://policysummarizer.xyz/">Tool</a>
         </div>
         <figure class="project-figure">
           <div class="figure-grid">
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/method_pol.png" data-caption="Policy summarization method overview" aria-label="Open policy summarization method figure" title="Open larger view">
-                <img src="images/web_fig/method_pol.png" alt="Policy summarization method overview">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/method_pol.png" data-caption="PolicySummarizer: method" aria-label="Enlarge PolicySummarizer method figure" aria-haspopup="dialog">
+                <img src="images/web_fig/thumbs/method_pol.webp" width="1200" height="445" loading="lazy" decoding="async" alt="PolicySummarizer derives a policy automaton and regular expression before using an LLM to simplify the characterization.">
+                <span class="figure-label">
+                  <span>Method</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Method</span>
             </div>
             <div class="figure-panel">
-              <button type="button" class="image-open" data-full="images/web_fig/pol_res.png" data-caption="Policy summarization experimental results" aria-label="Open policy summarization results figure" title="Open larger view">
-                <img src="images/web_fig/pol_res.png" alt="Policy summarization experimental results">
-                <span class="zoom-indicator" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 4 4" />
-                    <path d="M10.5 8v5" />
-                    <path d="M8 10.5h5" />
-                  </svg>
+              <button type="button" class="image-open" data-full="images/web_fig/pol_res.png" data-caption="PolicySummarizer: results" aria-label="Enlarge PolicySummarizer results figure" aria-haspopup="dialog">
+                <img src="images/web_fig/thumbs/pol_res.webp" width="1200" height="627" loading="lazy" decoding="async" alt="Comparison of regex sizes and processing times for extracted DFAs, LLM-assisted sample summaries, and direct regex simplification across AWS, Azure, and Google Cloud.">
+                <span class="figure-label">
+                  <span>Results</span>
+                  <span class="zoom-indicator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="10.5" cy="10.5" r="4.5" />
+                      <path d="m14 14 4 4" />
+                      <path d="M10.5 8v5" />
+                      <path d="M8 10.5h5" />
+                    </svg>
+                  </span>
                 </span>
               </button>
-              <span class="figure-label">Results</span>
             </div>
           </div>
-          <figcaption>Key insight: automata-based equivalence checking verifies that a natural-language summary is semantically correct, not just fluent — guaranteeing the description matches what the policy actually enforces.</figcaption>
+          <figcaption>The workflow checks resource regex characterizations. The plots compare characterization size and processing cost across cloud providers.</figcaption>
         </figure>
+        <details class="project-details">
+          <summary>Method and supporting results</summary>
+          <p>Converts policy permissions to automata-derived regular expressions, then uses an LLM to simplify the resource characterization. Model counting compares the original and simplified regexes within a chosen string-length bound.</p>
+          <ul>
+            <li>A configured similarity threshold determines whether to accept the simplified regex or fall back to the automata-derived characterization.</li>
+            <li>The checks apply to resource regexes within that bound; they do not prove unrestricted equivalence or the correctness of freeform prose.</li>
+            <li>The overall mean similarity is 0.926, rounded to 0.93. See the July 2026 paper revision for the evaluation.</li>
+          </ul>
+        </details>
       </article>
     </div>
   </section>
@@ -1058,7 +1111,7 @@
     <ul class="update-list">
       <li class="year-sep">2026</li>
       <li><span class="date">July 2026</span>Gave a virtual talk on <em>Neurosymbolic Auditing of Natural-Language Software Requirements</em> at AIMACS in Lisbon, Portugal (<a href="https://arxiv.org/abs/2605.13817">arXiv</a>).</li>
-      <li><span class="date">Mar 2026</span>Presented <em>CloudFix</em> at SANER 2026, Limassol, Cyprus -- Virtual</li>
+      <li><span class="date">Mar 2026</span>Presented <em>CloudFix</em> virtually at SANER 2026 in Limassol, Cyprus.</li>
       <li><span class="date">Mar 2026</span>Passed Ph.D. oral qualifying exam.</li>
       <li class="year-sep">2025</li>
       <li><span class="date">Dec 2025</span>Paper accepted to <em>SANER 2026</em> (Research Track).</li>
@@ -1068,74 +1121,76 @@
       <li><span class="date">Aug 2021</span>Selected as a <em>Global UGRAD Scholar</em> by the U.S. Department of State.</li>
     </ul>
   </section>
-  <section id="service">
-    <h2>Professional Service</h2>
-    <p class="section-note">Conference and Journal Reviewing</p>
+  <section id="teaching">
+    <h2>Teaching</h2>
     <ul class="interest-list">
-      <li><strong>NeurIPS 2026</strong> — Reviewer</li>
-      <li><strong>ICAIF 2026</strong> — Reviewer</li>
+      <li><strong>Machine Learning</strong> · Fall 2025</li>
+      <li><strong>Introduction to Programming with Java</strong> · Spring 2025</li>
     </ul>
   </section>
 
+  <section id="service">
+    <h2>Professional Service</h2>
+    <p class="section-note">Conference Reviewing</p>
+    <ul class="interest-list">
+      <li><strong>NeurIPS 2026</strong> · Reviewer</li>
+      <li><strong>ICAIF 2026</strong> · Reviewer</li>
+    </ul>
+  </section>
+  </main>
 </div>
 
 <footer id="contact">
-  <div>Contact me: bhall2 at stevens dot edu</div>
-  <div class="last-updated" id="last-updated"></div>
+  <div><a href="mailto:bhall2@stevens.edu">bhall2@stevens.edu</a></div>
+  <div class="last-updated">Updated <time datetime="2026-09-18">September 2026</time></div>
 </footer>
 
-<div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded project figure">
+<dialog class="image-modal" id="image-modal" aria-label="Expanded project figure" aria-describedby="modal-caption">
   <div class="modal-content">
-    <button class="modal-close" type="button" aria-label="Close expanded figure">×</button>
-    <img id="modal-image" src="" alt="">
-    <div class="modal-caption" id="modal-caption"></div>
+    <button class="modal-close" type="button" aria-label="Close expanded figure" autofocus>×</button>
+    <img id="modal-image" alt="">
+    <p class="modal-caption" id="modal-caption"></p>
   </div>
-</div>
+</dialog>
 
 <script>
-  const d = new Date(document.lastModified);
-  const dateStr = 'Updated ' + d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  document.getElementById('last-updated').textContent = dateStr;
-  document.getElementById('last-updated-photo').textContent = dateStr;
-
   const imageModal = document.getElementById('image-modal');
   const modalImage = document.getElementById('modal-image');
   const modalCaption = document.getElementById('modal-caption');
   const modalClose = imageModal.querySelector('.modal-close');
+  let imageTrigger = null;
+  let previousOverflow = '';
 
-  function closeImageModal() {
-    imageModal.classList.remove('is-open');
-    imageModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+  imageModal.addEventListener('close', () => {
+    document.body.style.overflow = previousOverflow;
     modalImage.removeAttribute('src');
     modalImage.alt = '';
     modalCaption.textContent = '';
-  }
+    imageTrigger?.focus({ preventScroll: true });
+    imageTrigger = null;
+  });
 
   document.querySelectorAll('.image-open').forEach((button) => {
     button.addEventListener('click', () => {
       const caption = button.dataset.caption || '';
+      imageTrigger = button;
+      previousOverflow = document.body.style.overflow;
       modalImage.src = button.dataset.full;
-      modalImage.alt = caption;
+      modalImage.alt = button.querySelector('img').alt;
       modalCaption.textContent = caption;
-      imageModal.classList.add('is-open');
-      imageModal.setAttribute('aria-hidden', 'false');
+      imageModal.showModal();
       document.body.style.overflow = 'hidden';
-      modalClose.focus();
     });
   });
 
-  modalClose.addEventListener('click', closeImageModal);
+  modalClose.addEventListener('click', () => imageModal.close());
 
   imageModal.addEventListener('click', (event) => {
-    if (event.target === imageModal) {
-      closeImageModal();
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && imageModal.classList.contains('is-open')) {
-      closeImageModal();
+    const bounds = imageModal.getBoundingClientRect();
+    if (event.target === imageModal &&
+        (event.clientX < bounds.left || event.clientX > bounds.right ||
+         event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+      imageModal.close();
     }
   });
 </script>
