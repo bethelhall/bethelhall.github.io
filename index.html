@@ -246,11 +246,11 @@
 
   
     .intro {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 2.25rem;
-  align-items: start;
-}
+      display: grid;
+      grid-template-columns: clamp(190px, 26vw, 260px) minmax(0, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
 
     .profile {
       display: flex;
@@ -259,13 +259,16 @@
     }
 
     .profile img {
-  width: 190px;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
-}
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      box-sizing: border-box;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
 
     .intro-copy h1 {
       margin-bottom: 0.35rem;
@@ -298,12 +301,13 @@
     }
 
     .intro-copy {
+      min-width: 0;
       max-width: 620px;
-      padding-top: 0.2rem;
     }
 
     .intro-copy p {
-      font-size: 1.04rem;
+      font-size: 1rem;
+      line-height: 1.65;
     }
 
     .contact {
@@ -839,19 +843,6 @@
         padding: 2.4rem 0 2.2rem;
       }
 
-      .intro {
-        grid-template-columns: 1fr;
-        gap: 1.6rem;
-      }
-
-      .profile {
-        align-items: flex-start;
-      }
-
-      .profile img {
-        width: 180px;
-        height: 180px;
-      }
 
       section {
         padding: 2.3rem 0;
@@ -859,6 +850,17 @@
 
       .project {
         grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .profile {
+        width: 180px;
+        justify-self: center;
       }
     }
   </style>
